@@ -286,11 +286,3 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
-/mtgtools/Data
-/mtgtools/Models
-/mtgtools/Properties/Resources.resx
-/mtgtools/Properties/Resources.Designer.cs
-/mtgtools/Services
-/mtgtools.Tests/Services/MtgServiceTests.cs
-/mtgtools.Tests/SampleDeckLists.resx
-/mtgtools.Tests/SampleDeckLists.Designer.cs
