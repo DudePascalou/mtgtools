@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtgtools", "mtgtools\mtgtools.csproj", "{D9063CAE-C112-4609-A47E-7FFBA01EB084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mtgtools.Tests", "mtgtools.Tests\mtgtools.Tests.csproj", "{666CBBFB-F998-4663-93C9-C89FE5C8A170}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D9063CAE-C112-4609-A47E-7FFBA01EB084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9063CAE-C112-4609-A47E-7FFBA01EB084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9063CAE-C112-4609-A47E-7FFBA01EB084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9063CAE-C112-4609-A47E-7FFBA01EB084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{666CBBFB-F998-4663-93C9-C89FE5C8A170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{666CBBFB-F998-4663-93C9-C89FE5C8A170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{666CBBFB-F998-4663-93C9-C89FE5C8A170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{666CBBFB-F998-4663-93C9-C89FE5C8A170}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E896BE3F-D0F2-49A2-965E-44D541EE8AA8}
+	EndGlobalSection
+EndGlobal
