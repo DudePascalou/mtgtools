@@ -179,9 +179,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Abilities\Ability.cs" />
+    <Compile Include="Models\Battlefield.cs" />
     <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\CardSetBase.cs" />
     <Compile Include="Models\Deck.cs" />
+    <Compile Include="Models\Exile.cs" />
     <Compile Include="Models\Format.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\Graveyard.cs" />
+    <Compile Include="Models\Hand.cs" />
+    <Compile Include="Models\ICardSet.cs" />
+    <Compile Include="Models\Library.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Set.cs" />
     <Compile Include="Models\Translation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -198,6 +208,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Data\LightSets-x.json" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -261,7 +272,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

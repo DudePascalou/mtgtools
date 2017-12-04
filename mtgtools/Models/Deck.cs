@@ -8,18 +8,22 @@ namespace mtgtools.Models
     /// <summary>
     /// A deck of Magic The Gathering © cards.
     /// </summary>
-    public class Deck
+    public class Deck : CardSetBase, ICardSet
     {
         public string Name { get; set; }
-        public ICollection<Card> MainCards { get; set; }
         public ICollection<Card> SideboardCards { get; set; }
         public Format Format { get; set; }
 
-        public Deck(string name, Format format)
+        public Deck() : base()
+        { }
+
+        public Deck(IList<Card> cards) : base(cards)
+        { }
+
+        public Deck(string name, Format format) : base()
         {
             Name = name;
             Format = format;
-            MainCards = new Collection<Card>();
             SideboardCards = new Collection<Card>();
         }
 
@@ -31,7 +35,7 @@ namespace mtgtools.Models
             }
             else
             {
-                MainCards.Add(card);
+                Cards.Add(card);
             }
         }
 
@@ -50,7 +54,7 @@ namespace mtgtools.Models
 
         public override string ToString()
         {
-            return string.Format("{0} ({1}, {2} cards)", Name, Format, MainCards.Count);
+            return string.Format("{0} ({1}, {2} cards)", Name, Format, Cards.Count);
         }
     }
 }

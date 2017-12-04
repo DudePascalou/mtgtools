@@ -19,7 +19,7 @@ namespace mtgtools.Services
         {
             _cardsByName = new Dictionary<string, Card>();
 
-            var filePath = @"C:\Users\PC\Documents\GitHub\mtgtools\mtgtools\Data\LightSets-x.json";
+            var filePath = @"C:\Users\PC\Documents\GitHub\mtgtools\mtgtools\Data\LightSets-x.json"; // TODO : find another way to load cards...
             var jsonFileContent = File.ReadAllText(filePath);
             dynamic dynSets = JsonConvert.DeserializeObject(jsonFileContent);
             IDictionary<string, JToken> jsonSets = dynSets;
