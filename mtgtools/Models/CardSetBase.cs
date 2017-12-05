@@ -14,7 +14,7 @@ namespace mtgtools.Models
 
         public CardSetBase(IList<Card> cards)
         {
-            Cards = cards;
+            Cards = cards ?? throw new ArgumentNullException("cards");
         }
     }
 }

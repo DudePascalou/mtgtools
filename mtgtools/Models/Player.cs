@@ -25,10 +25,29 @@ namespace mtgtools.Models
             Exile = new Exile();
             Battlefield = new Battlefield();
         }
+        
+        public void ShuffleLibrary()
+        {
+            Library.Shuffle();
+        }
+        
+        public void Draw(int cardCount)
+        {
+            for (int i = 0; i < cardCount; i++)
+            {
+                Hand.Cards.Add(Library.Draw());
+            }
+        }
 
         public void TakeMulligan()
         {
-            // TODO : 103.4 A player who is dissatisfied with his or her initial hand may take a mulligan.
+            // TODO : 103.4 A player who is dissatisfied with his or her initial hand 
+            // may take a mulligan.
+        }
+
+        public void TakeTurn(int turn, bool skipDrawingPhase)
+        {
+            // TODO : 500.1. A turn consists of five phases, in this order: beginning, precombat main, combat, postcombat main, and ending.
         }
     }
 }

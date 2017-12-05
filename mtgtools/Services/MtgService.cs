@@ -86,6 +86,8 @@ namespace mtgtools.Services
                 var firstSpaceIndex = nbAndName.IndexOf(' ');
                 var secondSpaceIndex = nbAndName.IndexOf(' ', firstSpaceIndex + 1);
 
+                if (firstSpaceIndex == -1 && secondSpaceIndex == -1) { continue; }
+
                 // Parse card count (main or sideboard) :
                 var cardCount = toSideboard
                     ? int.Parse(nbAndName.Substring(firstSpaceIndex + 1, secondSpaceIndex - firstSpaceIndex))

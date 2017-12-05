@@ -18,9 +18,8 @@ namespace mtgtools.Tests.Models
             var deck = new MtgService().ParseDeckList("TODO", Format.Legacy, "TODO");
             var player = new Player(deck);
             var game = new Game(player);
+            game.Prepare();
             game.Start();
-
-            // TODO Turns, PlayLand, CastSpells
         }
     }
 }
