@@ -15,7 +15,7 @@ namespace mtgtools.Tests.Models
         [TestMethod]
         public void CanStartNewGame()
         {
-            var deck = new MtgService().ParseDeckList("TODO", Format.Legacy, "TODO");
+            var deck = new MtgCardService().ParseDeckList("TODO", Format.Legacy, "TODO");
             var player = new Player(deck);
             var game = new Game(player);
             game.Prepare();

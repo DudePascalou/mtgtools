@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mtgtools.Tests {
+namespace mtgtools.Models {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace mtgtools.Tests {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class SampleDeckLists {
+    internal class RawMana {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal SampleDeckLists() {
+        internal RawMana() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace mtgtools.Tests {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("mtgtools.Tests.SampleDeckLists", typeof(SampleDeckLists).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("mtgtools.Models.RawMana", typeof(RawMana).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,69 +61,65 @@ namespace mtgtools.Tests {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à 1 Spring // Mind.
+        ///   Recherche une chaîne localisée semblable à B.
         /// </summary>
-        internal static string SampleWithAftermathLayout {
+        internal static string Black {
             get {
-                return ResourceManager.GetString("SampleWithAftermathLayout", resourceCulture);
+                return ResourceManager.GetString("Black", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à // Arpenteurs
-        ///1 Nissa, Steward of Elements
-        ///// Créatures
-        ///2 Elvish Mystic
-        ///// Sorts
-        ///3 Hedron Archive
-        ///4 Pulse of Murasa
-        ///5 Slip Through Space
-        ///// Terrains
-        ///6 Island
-        ///7 Forest
-        ///// SIDE DECK
-        ///SB: 8 Hedron Crawler
-        ///SB: 9 Wastes.
+        ///   Recherche une chaîne localisée semblable à U.
         /// </summary>
-        internal static string SimpleSample {
+        internal static string Blue {
             get {
-                return ResourceManager.GetString("SimpleSample", resourceCulture);
+                return ResourceManager.GetString("Blue", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à // NAME: [Deck Lotus Noir] Temur Energy
-        ///// MAIN DECK (60)
-        ///// Créatures (23)
-        ///4 Glorybringer
-        ///3 Bristling Hydra
-        ///4 Whirler Virtuoso
-        ///4 Rogue Refiner
-        ///4 Longtusk Cub
-        ///4 Servant of the Conduit
-        ///// Sorts (15)
-        ///1 Confiscation Coup
-        ///1 Commit // Memory
-        ///2 Essence Scatter
-        ///4 Harnessed Lightning
-        ///1 Abrade
-        ///2 Magma Spray
-        ///4 Attune with Aether
-        ///// Terrains (22)
-        ///1 Island
-        ///2 Mountain
-        ///4 Forest
-        ///4 Rootbound Crag
-        ///4 Aether Hub
-        ///4 Botanical Sanctum
-        ///3 Spirebluff Canal
-        ///// SIDE DECK (15)
-        ///SB: 1 Chandra, Torch of Defiance
-        ///SB: 2 Torrential Gearhulk [le reste de la chaîne a été tronqué]&quot;;.
+        ///   Recherche une chaîne localisée semblable à C.
         /// </summary>
-        internal static string TemurEnergy {
+        internal static string Colorless {
             get {
-                return ResourceManager.GetString("TemurEnergy", resourceCulture);
+                return ResourceManager.GetString("Colorless", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à G.
+        /// </summary>
+        internal static string Green {
+            get {
+                return ResourceManager.GetString("Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à R.
+        /// </summary>
+        internal static string Red {
+            get {
+                return ResourceManager.GetString("Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à W.
+        /// </summary>
+        internal static string White {
+            get {
+                return ResourceManager.GetString("White", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à X.
+        /// </summary>
+        internal static string X {
+            get {
+                return ResourceManager.GetString("X", resourceCulture);
             }
         }
     }

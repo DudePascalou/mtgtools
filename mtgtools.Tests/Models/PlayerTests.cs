@@ -16,7 +16,7 @@ namespace mtgtools.Tests.Models
         public void CanStartGame()
         {
             // Arrange
-            var deck = new MtgService().ParseDeckList("CanStartGame", Format.Legacy, SampleDeckLists.SimpleSample);
+            var deck = new MtgCardService().ParseDeckList("CanStartGame", Format.Legacy, SampleDeckLists.SimpleSample);
             var player = new Player(deck);
             var expectedStartingHand = 7;
             var expectedStartingLibrary = deck.Cards.Count - expectedStartingHand;

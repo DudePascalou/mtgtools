@@ -1,0 +1,782 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="JsonArtifact" xml:space="preserve">
+    <value>{
+	"artist": "Slawomir Maniak",
+	"cmc": 0,
+	"flavor": "Each of these intricate mechanical petals stores enough power to supply all of Ghirapur, if only for a fleeting moment.",
+	"id": "918aa0f2704c7e02f33e0ea7087c219bdbe22d4a",
+	"imageName": "lotus petal",
+	"layout": "normal",
+	"legalities": [
+	  {
+		"format": "Commander",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Legacy",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Tempest Block",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Vintage",
+		"legality": "Restricted"
+	  }
+	],
+	"manaCost": "{0}",
+	"mciNumber": "15",
+	"multiverseid": 420602,
+	"name": "Lotus Petal",
+	"number": "15",
+	"originalText": "{T}, Sacrifice Lotus Petal: Add one mana of any color to your mana pool.",
+	"originalType": "Artifact",
+	"printings": [
+	  "TMP",
+	  "V09",
+	  "TPR",
+	  "MPS"
+	],
+	"rarity": "Special",
+	"text": "{T}, Sacrifice Lotus Petal: Add one mana of any color to your mana pool.",
+	"type": "Artifact",
+	"types": [
+	  "Artifact"
+	]
+}</value>
+  </data>
+  <data name="JsonCreature" xml:space="preserve">
+    <value>{
+	"artist": "Wesley Burt",
+	"cmc": 1,
+	"colorIdentity": [
+	  "G"
+	],
+	"colors": [
+	  "Green"
+	],
+	"flavor": "\"Life grows everywhere. My kin merely find those places where it grows strongest.\"\n—Nissa Revane",
+	"foreignNames": [
+	  {
+		"language": "Chinese Simplified",
+		"name": "妖精秘教徒",
+		"multiverseid": 383513
+	  },
+	  {
+		"language": "Chinese Traditional",
+		"name": "妖精秘教徒",
+		"multiverseid": 383797
+	  },
+	  {
+		"language": "German",
+		"name": "Elfen-Mystiker",
+		"multiverseid": 384081
+	  },
+	  {
+		"language": "French",
+		"name": "Mystique elfe",
+		"multiverseid": 384365
+	  },
+	  {
+		"language": "Italian",
+		"name": "Elfo Mistico",
+		"multiverseid": 384649
+	  },
+	  {
+		"language": "Japanese",
+		"name": "エルフの神秘家",
+		"multiverseid": 384933
+	  },
+	  {
+		"language": "Korean",
+		"name": "엘프 신비주의자",
+		"multiverseid": 385217
+	  },
+	  {
+		"language": "Portuguese (Brazil)",
+		"name": "Místico Élfico",
+		"multiverseid": 385501
+	  },
+	  {
+		"language": "Russian",
+		"name": "Эльфийский Мистик",
+		"multiverseid": 385785
+	  },
+	  {
+		"language": "Spanish",
+		"name": "Místico élfico",
+		"multiverseid": 386069
+	  }
+	],
+	"id": "ed37abec3dac911ce8da502d86fe1e44bfc88ebd",
+	"imageName": "elvish mystic",
+	"layout": "normal",
+	"legalities": [
+	  {
+		"format": "Commander",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Legacy",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Modern",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Vintage",
+		"legality": "Legal"
+	  }
+	],
+	"manaCost": "{G}",
+	"mciNumber": "173",
+	"multiverseid": 383229,
+	"name": "Elvish Mystic",
+	"number": "173",
+	"originalText": "{T}: Add {G} to your mana pool.",
+	"originalType": "Creature — Elf Druid",
+	"power": "1",
+	"printings": [
+	  "pFNM",
+	  "M14",
+	  "M15",
+	  "C14",
+	  "CMA"
+	],
+	"rarity": "Common",
+	"subtypes": [
+	  "Elf",
+	  "Druid"
+	],
+	"text": "{T}: Add {G} to your mana pool.",
+	"toughness": "1",
+	"type": "Creature — Elf Druid",
+	"types": [
+	  "Creature"
+	]
+}</value>
+  </data>
+  <data name="JsonEnchantment" xml:space="preserve">
+    <value>{
+	"artist": "Christine Choi",
+	"cmc": 3,
+	"colorIdentity": [
+	  "R"
+	],
+	"colors": [
+	  "Red"
+	],
+	"id": "8f73d710a4397d4e809d862d192217afd5d3e75f",
+	"imageName": "blood moon",
+	"layout": "normal",
+	"legalities": [
+	  {
+		"format": "Commander",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Legacy",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Modern",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Vintage",
+		"legality": "Legal"
+	  }
+	],
+	"manaCost": "{2}{R}",
+	"mciNumber": "46",
+	"multiverseid": 430681,
+	"name": "Blood Moon",
+	"number": "46",
+	"originalText": "Nonbasic lands are Mountains.",
+	"originalType": "Enchantment",
+	"printings": [
+	  "DRK",
+	  "CHR",
+	  "8ED",
+	  "9ED",
+	  "MMA",
+	  "MM3",
+	  "MPS_AKH"
+	],
+	"rarity": "Special",
+	"rulings": [
+	  {
+		"date": "2017-03-14",
+		"text": "Nonbasic lands will lose any other land types and abilities they had. They will gain the land type Mountain and gain the ability \"{T}: Add {R} to your mana pool.\""
+	  },
+	  {
+		"date": "2017-03-14",
+		"text": "Blood Moon's effect doesn't affect names or supertypes. It won't turn any land into a basic land or remove the legendary supertype from a legendary land, and the lands won't be named \"Mountain.\""
+	  },
+	  {
+		"date": "2017-03-14",
+		"text": "If a nonbasic land has an ability that triggers \"when\" it enters the battlefield, it will lose that ability before it triggers."
+	  },
+	  {
+		"date": "2017-09-29",
+		"text": "If a nonbasic land has an ability that causes it to enter the battlefield tapped, it lose will that ability before it applies. The same is also true of any other abilities that modify how a land enters the battlefield or apply \"as\" a land enters the battlefield, such as the first ability of Cavern of Souls. This is a change from previous rulings."
+	  }
+	],
+	"text": "Nonbasic lands are Mountains.",
+	"type": "Enchantment",
+	"types": [
+	  "Enchantment"
+	]
+}</value>
+  </data>
+  <data name="JsonInstant" xml:space="preserve">
+    <value>{
+	"artist": "Noah Bradley",
+	"cmc": 1,
+	"colorIdentity": [
+	  "G"
+	],
+	"colors": [
+	  "Green"
+	],
+	"flavor": "\"The prohibition of unnecessary tossing of the citizenry by giants shall also extend to spontaneous giants.\"\n—Isperia's Edict, provision VII.789.2",
+	"foreignNames": [
+	  {
+		"language": "Russian",
+		"name": "Исполинский Рост",
+		"multiverseid": 355313
+	  },
+	  {
+		"language": "Chinese Traditional",
+		"name": "變巨術",
+		"multiverseid": 355587
+	  },
+	  {
+		"language": "German",
+		"name": "Riesenwuchs",
+		"multiverseid": 355861
+	  },
+	  {
+		"language": "French",
+		"name": "Croissance gigantesque",
+		"multiverseid": 356135
+	  },
+	  {
+		"language": "Italian",
+		"name": "Crescita Gigante",
+		"multiverseid": 356409
+	  },
+	  {
+		"language": "Japanese",
+		"name": "巨大化",
+		"multiverseid": 356683
+	  },
+	  {
+		"language": "Portuguese (Brazil)",
+		"name": "Crescimento Desenfreado",
+		"multiverseid": 356957
+	  },
+	  {
+		"language": "Chinese Simplified",
+		"name": "变巨术",
+		"multiverseid": 357231
+	  },
+	  {
+		"language": "Korean",
+		"name": "거대화",
+		"multiverseid": 357505
+	  },
+	  {
+		"language": "Spanish",
+		"name": "Crecimiento gigante",
+		"multiverseid": 365583
+	  }
+	],
+	"id": "087d30949cbac65a938db1ab9b23020d857b1f78",
+	"imageName": "giant growth",
+	"layout": "normal",
+	"legalities": [
+	  {
+		"format": "Commander",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Ice Age Block",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Legacy",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Modern",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Return to Ravnica Block",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Vintage",
+		"legality": "Legal"
+	  }
+	],
+	"manaCost": "{G}",
+	"mciNumber": "125",
+	"multiverseid": 289213,
+	"name": "Giant Growth",
+	"number": "125",
+	"originalText": "Target creature gets +3/+3 until end of turn.",
+	"originalType": "Instant",
+	"printings": [
+	  "LEA",
+	  "LEB",
+	  "2ED",
+	  "CED",
+	  "CEI",
+	  "3ED",
+	  "4ED",
+	  "ICE",
+	  "5ED",
+	  "ATH",
+	  "6ED",
+	  "BRB",
+	  "pSUS",
+	  "pFNM",
+	  "S00",
+	  "BTD",
+	  "7ED",
+	  "pMPR",
+	  "DKM",
+	  "8ED",
+	  "9ED",
+	  "10E",
+	  "EVG",
+	  "ME2",
+	  "M10",
+	  "ME3",
+	  "DDD",
+	  "DPA",
+	  "M11",
+	  "ME4",
+	  "RTR",
+	  "M14",
+	  "DD3_EVG",
+	  "DD3_GVL"
+	],
+	"rarity": "Common",
+	"text": "Target creature gets +3/+3 until end of turn.",
+	"type": "Instant",
+	"types": [
+	  "Instant"
+	]
+}</value>
+  </data>
+  <data name="JsonLand" xml:space="preserve">
+    <value>{
+	"artist": "Howard Lyon",
+	"cmc": 0,
+	"id": "47e1a5391bc529fd926be9f7237a6b99039d571c",
+	"imageName": "strip mine",
+	"layout": "normal",
+	"legalities": [
+	  {
+		"format": "Commander",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Legacy",
+		"legality": "Banned"
+	  },
+	  {
+		"format": "Vintage",
+		"legality": "Restricted"
+	  }
+	],
+	"mciNumber": "43",
+	"multiverseid": 409574,
+	"name": "Strip Mine",
+	"number": "43",
+	"originalText": "{T}: Add {C} to your mana pool.\n{T}, Sacrifice Strip Mine: Destroy target land.",
+	"originalType": "Land",
+	"printings": [
+	  "ATQ",
+	  "4ED",
+	  "ATH",
+	  "V09",
+	  "ME4",
+	  "VMA",
+	  "EXP"
+	],
+	"rarity": "Mythic Rare",
+	"text": "{T}: Add {C} to your mana pool.\n{T}, Sacrifice Strip Mine: Destroy target land.",
+	"type": "Land",
+	"types": [
+	  "Land"
+	]
+}</value>
+  </data>
+  <data name="JsonPlaneswalker" xml:space="preserve">
+    <value>{
+	"artist": "Howard Lyon",
+	"cmc": 2,
+	"colorIdentity": [
+	  "U",
+	  "G"
+	],
+	"colors": [
+	  "Blue",
+	  "Green"
+	],
+	"foreignNames": [
+	  {
+		"language": "German",
+		"name": "Nissa, Hüterin der Elemente",
+		"multiverseid": 427175
+	  },
+	  {
+		"language": "Spanish",
+		"name": "Nissa, encarnación de los elementos",
+		"multiverseid": 427444
+	  },
+	  {
+		"language": "French",
+		"name": "Nissa, intendante des éléments",
+		"multiverseid": 427713
+	  },
+	  {
+		"language": "Italian",
+		"name": "Nissa, Guardiana degli Elementi",
+		"multiverseid": 427982
+	  },
+	  {
+		"language": "Japanese",
+		"name": "自然に仕える者、ニッサ",
+		"multiverseid": 428251
+	  },
+	  {
+		"language": "Korean",
+		"name": "원소의 관리인 니사",
+		"multiverseid": 428520
+	  },
+	  {
+		"language": "Portuguese (Brazil)",
+		"name": "Nissa, Guardiã dos Elementos",
+		"multiverseid": 428789
+	  },
+	  {
+		"language": "Russian",
+		"name": "Нисса, Проводница Стихий",
+		"multiverseid": 429058
+	  },
+	  {
+		"language": "Chinese Simplified",
+		"name": "地源守护妮莎",
+		"multiverseid": 429327
+	  },
+	  {
+		"language": "Chinese Traditional",
+		"name": "地源守護妮莎",
+		"multiverseid": 429596
+	  }
+	],
+	"id": "ef0f21656a32fcd086819e0197855c3389360372",
+	"imageName": "nissa, steward of elements",
+	"layout": "normal",
+	"legalities": [
+	  {
+		"format": "Amonkhet Block",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Commander",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Legacy",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Modern",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Standard",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Vintage",
+		"legality": "Legal"
+	  }
+	],
+	"loyalty": null,
+	"manaCost": "{X}{G}{U}",
+	"mciNumber": "204",
+	"multiverseid": 426906,
+	"name": "Nissa, Steward of Elements",
+	"number": "204",
+	"originalText": "+2: Scry 2.\n0: Look at the top card of your library. If it's a land card or a creature card with converted mana cost less than or equal to the number of loyalty counters on Nissa, Steward of Elements, you may put that card onto the battlefield.\n−6: Untap up to two target lands you control. They become 5/5 Elemental creatures with flying and haste until end of turn. They're still lands.",
+	"originalType": "Planeswalker — Nissa",
+	"printings": [
+	  "AKH"
+	],
+	"rarity": "Mythic Rare",
+	"rulings": [
+	  {
+		"date": "2017-04-18",
+		"text": "If X is 0, Nissa enters the battlefield with no loyalty and is put into her owner's graveyard before you can activate her abilities."
+	  },
+	  {
+		"date": "2017-04-18",
+		"text": "While resolving Nissa's second ability, if you can't or don't put the card onto the battlefield, it remains on top of your library."
+	  },
+	  {
+		"date": "2017-04-18",
+		"text": "Once Nissa's second ability begins to resolve, no player may take actions until it's done. Notably, players can't try to change Nissa's loyalty once you look at the card or choose to put it onto the battlefield."
+	  },
+	  {
+		"date": "2017-04-18",
+		"text": "If Nissa leaves the battlefield while her second ability is on the stack, use her last known loyalty to determine whether you may put the top card of your library onto the battlefield. If Nissa left the battlefield because she took enough damage to reduce her loyalty to 0, then her last known loyalty is 0."
+	  },
+	  {
+		"date": "2017-04-18",
+		"text": "Nissa's last ability sets the base power and toughness of the lands to 5/5. Any +1/+1 or -1/-1 counters that were on those lands will apply to those values."
+	  }
+	],
+	"subtypes": [
+	  "Nissa"
+	],
+	"supertypes": [
+	  "Legendary"
+	],
+	"text": "+2: Scry 2.\n0: Look at the top card of your library. If it's a land card or a creature card with converted mana cost less than or equal to the number of loyalty counters on Nissa, Steward of Elements, you may put that card onto the battlefield.\n−6: Untap up to two target lands you control. They become 5/5 Elemental creatures with flying and haste until end of turn. They're still lands.",
+	"type": "Legendary Planeswalker — Nissa",
+	"types": [
+	  "Planeswalker"
+	]
+}</value>
+  </data>
+  <data name="JsonSorcery" xml:space="preserve">
+    <value>{
+	"artist": "Raymond Swanland",
+	"cmc": 1,
+	"colorIdentity": [
+	  "U"
+	],
+	"flavor": "The Eldrazi twisted in a direction that had no name, and a frontal assault became a panicked rout.",
+	"foreignNames": [
+	  {
+		"language": "Chinese Simplified",
+		"name": "滑越空间",
+		"multiverseid": 407743
+	  },
+	  {
+		"language": "Chinese Traditional",
+		"name": "滑越空間",
+		"multiverseid": 407929
+	  },
+	  {
+		"language": "German",
+		"name": "Durchschlüpfen",
+		"multiverseid": 408115
+	  },
+	  {
+		"language": "French",
+		"name": "Faufilement spatial",
+		"multiverseid": 408301
+	  },
+	  {
+		"language": "Italian",
+		"name": "Scivolare nello Spazio",
+		"multiverseid": 408487
+	  },
+	  {
+		"language": "Japanese",
+		"name": "空間の擦り抜け",
+		"multiverseid": 408673
+	  },
+	  {
+		"language": "Korean",
+		"name": "공간 침투",
+		"multiverseid": 408859
+	  },
+	  {
+		"language": "Portuguese (Brazil)",
+		"name": "Deslizar Pelo Espaço",
+		"multiverseid": 409045
+	  },
+	  {
+		"language": "Russian",
+		"name": "Сквозь Пространство",
+		"multiverseid": 409231
+	  },
+	  {
+		"language": "Spanish",
+		"name": "Deslizarse por el espacio",
+		"multiverseid": 409417
+	  }
+	],
+	"id": "51248357802f2e6670cb66707fc166448e47e371",
+	"imageName": "slip through space",
+	"layout": "normal",
+	"legalities": [
+	  {
+		"format": "Battle for Zendikar Block",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Commander",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Legacy",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Modern",
+		"legality": "Legal"
+	  },
+	  {
+		"format": "Vintage",
+		"legality": "Legal"
+	  }
+	],
+	"manaCost": "{U}",
+	"mciNumber": "47",
+	"multiverseid": 407557,
+	"name": "Slip Through Space",
+	"number": "47",
+	"originalText": "Devoid (This card has no color.)\nTarget creature can't be blocked this turn.\nDraw a card.",
+	"originalType": "Sorcery",
+	"printings": [
+	  "OGW"
+	],
+	"rarity": "Common",
+	"text": "Devoid (This card has no color.)\nTarget creature can't be blocked this turn.\nDraw a card.",
+	"type": "Sorcery",
+	"types": [
+	  "Sorcery"
+	]
+}</value>
+  </data>
+</root>

@@ -10,25 +10,18 @@ using mtgtools.Models;
 namespace mtgtools.Tests.Services
 {
     [TestClass]
-    public class MtgServiceTests
+    public class MtgCardServiceTests
     {
-        private static readonly MtgService _Service = new MtgService();
-        private static MtgService MtgService
+        private static readonly MtgCardService _Service = new MtgCardService();
+        private static MtgCardService MtgCardService
         {
             get { return _Service; }
         }
-
-        //[TestMethod]
-        //public void CanConstructMtgService()
-        //{
-        //    var mtgSvc = new MtgService();
-        //}
-
-
+        
         [TestMethod]
         public void CanFindByName_WithAftermath()
         {
-            var springToMind = MtgService.FindByName("Spring // Mind");
+            var springToMind = MtgCardService.FindByName("Spring // Mind");
 
         }
 
@@ -36,7 +29,7 @@ namespace mtgtools.Tests.Services
         public void CanParseDeckList()
         {
             // Act
-            var deck = MtgService.ParseDeckList("SimpleSample", Format.Legacy, SampleDeckLists.SimpleSample);
+            var deck = MtgCardService.ParseDeckList("SimpleSample", Format.Legacy, SampleDeckLists.SimpleSample);
 
             // Assert
             Assert.AreEqual(28, deck.Cards.Count);
@@ -48,7 +41,7 @@ namespace mtgtools.Tests.Services
         public void CanParseDeckList_WithAftermath()
         {
             // Act
-            var deck = MtgService.ParseDeckList("SampleWithAftermathLayout", Format.Legacy, SampleDeckLists.SampleWithAftermathLayout);
+            var deck = MtgCardService.ParseDeckList("SampleWithAftermathLayout", Format.Legacy, SampleDeckLists.SampleWithAftermathLayout);
 
             // Assert
             Assert.AreEqual(1, deck.Cards.Count);

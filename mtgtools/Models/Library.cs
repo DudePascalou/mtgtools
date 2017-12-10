@@ -33,6 +33,7 @@ namespace mtgtools.Models
 
         public Card Draw()
         {
+            if (Cards.Count == 0) { return null; }
             var topCard = Cards[0];
             Cards.RemoveAt(0);
             return topCard;

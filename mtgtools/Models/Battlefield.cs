@@ -12,5 +12,10 @@ namespace mtgtools.Models
 
         public Battlefield(IList<Card> cards) : base(cards)
         { }
+
+        public void Enter(Card card)
+        {
+            Cards.Add(card);
+        }
     }
 }

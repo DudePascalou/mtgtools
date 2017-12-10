@@ -200,5 +200,24 @@ namespace mtgtools.Models
         {
             return string.Format("{0}\t{1}", Name, ManaCost);
         }
+
+        #region IsA
+
+        private bool IsA(string type)
+        {
+            // Most of the time, a card is of one type.
+            // Check first the main type for optimization :
+            return Type == type || Types.Any(t => t == type);
+        }
+
+        public bool IsAnArtifact { get { return IsA(CardTypes.Artifact); } }
+        public bool IsACreature { get { return IsA(CardTypes.Creature); } }
+        public bool IsAnEnchantment { get { return IsA(CardTypes.Enchantment); } }
+        public bool IsAnInstant { get { return IsA(CardTypes.Instant); } }
+        public bool IsALand { get { return IsA(CardTypes.Land); } }
+        public bool IsAPlaneswalker { get { return IsA(CardTypes.Planeswalker); } }
+        public bool IsASorcery { get { return IsA(CardTypes.Sorcery); } }
+
+        #endregion
     }
 }

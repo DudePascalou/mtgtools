@@ -117,63 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SampleWithAftermathLayout" xml:space="preserve">
-    <value>1 Spring // Mind</value>
+  <data name="Artifact" xml:space="preserve">
+    <value>Artifact</value>
   </data>
-  <data name="SimpleSample" xml:space="preserve">
-    <value>// Arpenteurs
-1 Nissa, Steward of Elements
-// Créatures
-2 Elvish Mystic
-// Sorts
-3 Hedron Archive
-4 Pulse of Murasa
-5 Slip Through Space
-// Terrains
-6 Island
-7 Forest
-// SIDE DECK
-SB: 8 Hedron Crawler
-SB: 9 Wastes</value>
-    <comment>Planeswalker, Creature, Artifact, Instant, Sorcery, Land, Sideboard</comment>
+  <data name="Creature" xml:space="preserve">
+    <value>Creature</value>
   </data>
-  <data name="TemurEnergy" xml:space="preserve">
-    <value>// NAME: [Deck Lotus Noir] Temur Energy
-// MAIN DECK (60)
-// Créatures (23)
-4 Glorybringer
-3 Bristling Hydra
-4 Whirler Virtuoso
-4 Rogue Refiner
-4 Longtusk Cub
-4 Servant of the Conduit
-// Sorts (15)
-1 Confiscation Coup
-1 Commit // Memory
-2 Essence Scatter
-4 Harnessed Lightning
-1 Abrade
-2 Magma Spray
-4 Attune with Aether
-// Terrains (22)
-1 Island
-2 Mountain
-4 Forest
-4 Rootbound Crag
-4 Aether Hub
-4 Botanical Sanctum
-3 Spirebluff Canal
-// SIDE DECK (15)
-SB: 1 Chandra, Torch of Defiance
-SB: 2 Torrential Gearhulk
-SB: 1 Confiscation Coup
-SB: 1 Glimmer of Genius
-SB: 2 Appetite for the Unnatural
-SB: 1 Aethersphere Harvester
-SB: 1 Supreme Will
-SB: 4 Negate
-SB: 1 Abrade
-SB: 1 Chandra's Defeat</value>
-    <comment>William Jensen’s Temur Energy 2017 World Championship Deck.</comment>
+  <data name="Enchantment" xml:space="preserve">
+    <value>Enchantment</value>
+  </data>
+  <data name="Instant" xml:space="preserve">
+    <value>Instant</value>
+  </data>
+  <data name="Land" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="Planeswalker" xml:space="preserve">
+    <value>Planeswalker</value>
+  </data>
+  <data name="Sorcery" xml:space="preserve">
+    <value>Sorcery</value>
   </data>
 </root>

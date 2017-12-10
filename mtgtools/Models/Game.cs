@@ -59,9 +59,10 @@ namespace mtgtools.Models
                 {
                     // 103.7a In a two-player game, the player who plays first skips the draw step (see rule 504, “Draw Step”) of his or her first turn.
                     var skipDrawingPhase = (player == StartingPlayer && Turn == 1);
-                    player.TakeTurn(Turn, skipDrawingPhase);
+                    //player.TakeTurn(Turn, skipDrawingPhase);
                 }
                 // TODO : End the game. See rule 104. 
+                if (Turn > 100) break; // Temporary limit of 100 turns...
             }
         }
     }

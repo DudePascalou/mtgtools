@@ -10,12 +10,12 @@ using System.Web;
 
 namespace mtgtools.Services
 {
-    public class MtgService
+    public class MtgCardService
     {
         private ICollection<Set> _sets;
         private IDictionary<string, Card> _cardsByName;
 
-        public MtgService()
+        public MtgCardService()
         {
             _cardsByName = new Dictionary<string, Card>();
 
@@ -106,5 +106,14 @@ namespace mtgtools.Services
 
             return deck;
         }
+
+        #region Static methods
+
+        public static Card ParseCard(string cardJson)
+        {
+            return JsonConvert.DeserializeObject<Card>(cardJson);
+        }
+
+        #endregion
     }
 }
