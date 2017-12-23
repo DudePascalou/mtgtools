@@ -1,4 +1,7 @@
-﻿using System;
+﻿using mtgtools.Models.Abilities;
+using mtgtools.Models.Zones;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +16,8 @@ namespace mtgtools.Models
     /// </remarks>
     public class Card
     {
+        #region Data
+
         /// <summary>
         /// The card name. For split, double-faced and flip cards, 
         /// just the name of one side of the card. 
@@ -57,6 +62,7 @@ namespace mtgtools.Models
         /// </summary>
         /// <example>"Legendary Creature — Angel"</example>
         public string Type { get; set; }
+
         /// <summary>
         /// The supertypes of the card. 
         /// These appear to the far left of the card type. 
@@ -196,6 +202,14 @@ namespace mtgtools.Models
         /// </summary>
         public string MciNumber { get; set; }
 
+        #endregion
+
+        public Card()
+        {
+            Abilities = new List<IAbility>();
+            //Zone = Zones.Zone.OutOfTheGameZone;
+        }
+
         public override string ToString()
         {
             return string.Format("{0}\t{1}", Name, ManaCost);
@@ -210,13 +224,93 @@ namespace mtgtools.Models
             return Type == type || Types.Any(t => t == type);
         }
 
+        [JsonIgnore]
         public bool IsAnArtifact { get { return IsA(CardTypes.Artifact); } }
+        [JsonIgnore]
         public bool IsACreature { get { return IsA(CardTypes.Creature); } }
+        [JsonIgnore]
         public bool IsAnEnchantment { get { return IsA(CardTypes.Enchantment); } }
+        [JsonIgnore]
         public bool IsAnInstant { get { return IsA(CardTypes.Instant); } }
+        [JsonIgnore]
         public bool IsALand { get { return IsA(CardTypes.Land); } }
+        [JsonIgnore]
         public bool IsAPlaneswalker { get { return IsA(CardTypes.Planeswalker); } }
+        [JsonIgnore]
         public bool IsASorcery { get { return IsA(CardTypes.Sorcery); } }
+
+        #endregion
+
+        #region Equality
+
+        public override bool Equals(object obj)
+        {
+            var card = obj as Card;
+            if (card == null)
+            {
+                return false;
+            }
+            else
+            {
+                return Instance == card.Instance;
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return Instance.GetHashCode();
+        }
+
+        #endregion
+
+        #region In Game
+
+        /// <summary>
+        /// Gets or sets a <see cref="Guid"/> to uniquely identify a card in a game.
+        /// </summary>
+        [JsonIgnore]
+        public Guid Instance { get; set; }
+
+        [JsonIgnore]
+        public TypedMana TypedManaCost { get { return TypedMana.Parse(ManaCost); } }
+
+        //[JsonIgnore]
+        //public IZone Zone { get; set; }
+
+        #endregion
+
+        #region Abilities
+
+        [JsonIgnore]
+        public ICollection<IAbility> Abilities { get; set; }
+
+        public bool HasAbility<T>() where T : IAbility
+        {
+            return Abilities.Any(a => a.GetType() == typeof(T));
+        }
+
+        public T GetAbility<T>() where T : class, IAbility
+        {
+            return Abilities.FirstOrDefault(a => a.GetType() == typeof(T)) as T;
+        }
+
+        [JsonIgnore]
+        public bool IsTapped { get; private set; }
+
+        public bool CanTap()
+        {
+            return !IsTapped && HasAbility<SummoningSicknessStaticAbility>();
+        }
+
+        public void Tap()
+        {
+            IsTapped = true;
+        }
+
+        public void Untap()
+        {
+            IsTapped = false;
+        }
 
         #endregion
     }

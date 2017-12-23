@@ -22,5 +22,10 @@ namespace mtgtools.Models
             }
             return cardIndex > -1;
         }
+
+        public void Push(Card card)
+        {
+            Cards.Add(card);
+        }
     }
 }

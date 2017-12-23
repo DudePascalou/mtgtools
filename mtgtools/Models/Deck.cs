@@ -20,7 +20,10 @@ namespace mtgtools.Models
         public Deck(IList<Card> cards) : base(cards)
         { }
 
-        public Deck(string name, Format format) : base()
+        public Deck(string name, Format format) : this(name, format, new List<Card>())
+        { }
+
+        public Deck(string name, Format format, IList<Card> cards) : base(cards)
         {
             Name = name;
             Format = format;

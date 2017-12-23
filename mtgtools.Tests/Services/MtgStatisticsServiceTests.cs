@@ -14,13 +14,18 @@ namespace mtgtools.Tests.Services
     public class MtgStatisticsServiceTests
     {
         [TestMethod]
-        [Ignore("WIP")]
+        //[Ignore("WIP")]
         public void CanComputePlayabilityStatistics()
         {
-            var deck = new MtgCardService().ParseDeckList("TODO", Format.Legacy, "TODO");
+            var svc = new MtgCardService();
+            //svc.LoadCardsDatabase();
+            var deck = svc.ParseDeckListJson("Desolation", Format.Legacy, SampleDeckListsJson.Desolation);
+            //var str = Newtonsoft.Json.JsonConvert.SerializeObject(deck.Cards);
             var statsSvc = new MtgStatisticsService();
-            var choiceAlgo = new DesolationChoiceAlgorithm();
-            statsSvc.ComputePlayabilityStatistics(deck, choiceAlgo, 8);
+            var playerAI = new DesolationPlayerAI();
+            var player = new Player(deck, playerAI);
+
+            statsSvc.ComputePlayabilityStatistics(deck, player, 8);
         }
     }
 }

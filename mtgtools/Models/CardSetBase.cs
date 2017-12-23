@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
@@ -7,7 +8,7 @@ namespace mtgtools.Models
 {
     public class CardSetBase : ICardSet
     {
-        public IList<Card> Cards { get; set; }
+        public ObservableCollection<Card> Cards { get; set; }
         public bool HasLand { get { return Cards.Any(c => c.IsALand); } }
 
         public CardSetBase() : this(new List<Card>())
@@ -15,7 +16,7 @@ namespace mtgtools.Models
 
         public CardSetBase(IList<Card> cards)
         {
-            Cards = cards ?? throw new ArgumentNullException("cards");
+            Cards = new ObservableCollection<Card>(cards);// ?? throw new ArgumentNullException("cards");
         }
 
         public IEnumerable<Card> Artifacts()

@@ -103,6 +103,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CardSamples.resx</DependentUpon>
     </Compile>
+    <Compile Include="Models\AvailableManaTests.cs" />
     <Compile Include="Models\CardTests.cs" />
     <Compile Include="Models\GameTests.cs" />
     <Compile Include="Models\PlayerTests.cs" />
@@ -115,9 +116,14 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="SampleDeckListsJson.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SampleDeckListsJson.resx</DependentUpon>
+    </Compile>
     <Compile Include="Services\MtgStatisticsServiceTests.cs" />
     <Compile Include="Services\MtgCardServiceTests.cs" />
-    <Compile Include="TestsModels\DesolationChoiceAlgorithm.cs" />
+    <Compile Include="TestsModels\DesolationPlayerAI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -139,6 +145,10 @@
     <EmbeddedResource Include="SampleDeckLists.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>SampleDeckLists.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SampleDeckListsJson.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SampleDeckListsJson.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

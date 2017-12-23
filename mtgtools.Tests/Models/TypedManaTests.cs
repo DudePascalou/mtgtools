@@ -45,5 +45,20 @@ namespace mtgtools.Tests.Models
             Assert.AreEqual(35, typedMana.Cmc);
             Assert.AreEqual("X:1-G:2-C:3-W:4-U:5-B:6-R:7-G:8", typedMana.ToLongString());
         }
+
+        [TestMethod]
+        public void CanAdd()
+        {
+            // Arrange - Act - Assert
+            var typedMana1 = TypedMana.Parse("{1}");
+            var typedMana2 = TypedMana.Parse("{1}");
+            Assert.AreEqual("X:0-G:2-C:0-W:0-U:0-B:0-R:0-G:0", (typedMana1 + typedMana2).ToLongString());
+            typedMana1 = TypedMana.Parse("{W}{U}");
+            typedMana2 = TypedMana.Parse("{2}{W}{B}{B}");
+            Assert.AreEqual("X:0-G:2-C:0-W:2-U:1-B:2-R:0-G:0", (typedMana1 + typedMana2).ToLongString());
+            typedMana1 = TypedMana.Parse("{C}{C}");
+            typedMana2 = TypedMana.Parse("{C}{R}{R}{G}");
+            Assert.AreEqual("X:0-G:0-C:3-W:0-U:0-B:0-R:2-G:1", (typedMana1 + typedMana2).ToLongString());
+        }
     }
 }

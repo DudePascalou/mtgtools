@@ -12,19 +12,22 @@ namespace mtgtools.Services
 {
     public class MtgCardService
     {
-        private ICollection<Set> _sets;
-        private IDictionary<string, Card> _cardsByName;
+        private readonly ICollection<Set> _sets;
+        private readonly IDictionary<string, Card> _cardsByName;
 
         public MtgCardService()
         {
-            _cardsByName = new Dictionary<string, Card>();
+            _cardsByName = new Dictionary<string, Card>(20000);
+            _sets = new List<Set>(200);
+        }
 
+        public void LoadCardsDatabase()
+        {
             var filePath = @"C:\Users\PC\Documents\GitHub\mtgtools\mtgtools\Data\LightSets-x.json"; // TODO : find another way to load cards...
             var jsonFileContent = File.ReadAllText(filePath);
             dynamic dynSets = JsonConvert.DeserializeObject(jsonFileContent);
             IDictionary<string, JToken> jsonSets = dynSets;
 
-            _sets = new List<Set>(jsonSets.Keys.Count);
             foreach (var jsonSet in jsonSets)
             {
                 var set = JsonConvert.DeserializeObject<Set>(jsonSet.Value.ToString());
@@ -77,7 +80,7 @@ namespace mtgtools.Services
         {
             var deck = new Deck(name, format);
 
-            var nbAndNames = deckList.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            var nbAndNames = deckList.Split(new string[] { Environment.NewLine, "\n" }, StringSplitOptions.RemoveEmptyEntries);
             foreach (var nbAndName in nbAndNames)
             {
                 if (nbAndName.StartsWith(Resources.CommentPrefix)) continue;
@@ -107,13 +110,16 @@ namespace mtgtools.Services
             return deck;
         }
 
-        #region Static methods
-
-        public static Card ParseCard(string cardJson)
+        public Card ParseCardJson(string cardJson)
         {
             return JsonConvert.DeserializeObject<Card>(cardJson);
         }
 
-        #endregion
+        public Deck ParseDeckListJson(string name, Format format, string deckListJson)
+        {
+            var cards = JsonConvert.DeserializeObject<List<Card>>(deckListJson);
+            var deck = new Deck(name, format, cards);
+            return deck;
+        }
     }
 }

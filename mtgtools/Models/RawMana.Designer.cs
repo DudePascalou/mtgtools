@@ -61,6 +61,24 @@ namespace mtgtools.Models {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à AC.
+        /// </summary>
+        internal static string AnyColor {
+            get {
+                return ResourceManager.GetString("AnyColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à AT.
+        /// </summary>
+        internal static string AnyType {
+            get {
+                return ResourceManager.GetString("AnyType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à B.
         /// </summary>
         internal static string Black {

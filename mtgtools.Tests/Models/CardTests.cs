@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mtgtools.Models;
 using mtgtools.Services;
+using mtgtools.Models.Abilities;
 
 namespace mtgtools.Tests.Models
 {
@@ -16,7 +17,7 @@ namespace mtgtools.Tests.Models
         public void CanTellIsAnArtifact()
         {
             // Arrange
-            var artifact = MtgCardService.ParseCard(CardSamples.JsonArtifact);
+            var artifact = new MtgCardService().ParseCardJson(CardSamples.JsonArtifact);
 
             // Act - Assert
             Assert.IsTrue(artifact.IsAnArtifact);
@@ -32,7 +33,7 @@ namespace mtgtools.Tests.Models
         public void CanTellIsACreature()
         {
             // Arrange
-            var creature = MtgCardService.ParseCard(CardSamples.JsonCreature);
+            var creature = new MtgCardService().ParseCardJson(CardSamples.JsonCreature);
 
             // Act - Assert
             Assert.IsFalse(creature.IsAnArtifact);
@@ -48,7 +49,7 @@ namespace mtgtools.Tests.Models
         public void CanTellIsAnEnchantment()
         {
             // Arrange
-            var enchantment = MtgCardService.ParseCard(CardSamples.JsonEnchantment);
+            var enchantment = new MtgCardService().ParseCardJson(CardSamples.JsonEnchantment);
 
             // Act - Assert
             Assert.IsFalse(enchantment.IsAnArtifact);
@@ -64,7 +65,7 @@ namespace mtgtools.Tests.Models
         public void CanTellIsAnInstant()
         {
             // Arrange
-            var instant = MtgCardService.ParseCard(CardSamples.JsonInstant);
+            var instant = new MtgCardService().ParseCardJson(CardSamples.JsonInstant);
 
             // Act - Assert
             Assert.IsFalse(instant.IsAnArtifact);
@@ -80,7 +81,7 @@ namespace mtgtools.Tests.Models
         public void CanTellIsALand()
         {
             // Arrange
-            var land = MtgCardService.ParseCard(CardSamples.JsonLand);
+            var land = new MtgCardService().ParseCardJson(CardSamples.JsonLand);
 
             // Act - Assert
             Assert.IsFalse(land.IsAnArtifact);
@@ -96,7 +97,7 @@ namespace mtgtools.Tests.Models
         public void CanTellIsAPlaneswalker()
         {
             // Arrange
-            var planeswalker = MtgCardService.ParseCard(CardSamples.JsonPlaneswalker);
+            var planeswalker = new MtgCardService().ParseCardJson(CardSamples.JsonPlaneswalker);
 
             // Act - Assert
             Assert.IsFalse(planeswalker.IsAnArtifact);
@@ -112,7 +113,7 @@ namespace mtgtools.Tests.Models
         public void CanTellIsASorcery()
         {
             // Arrange
-            var sorcery = MtgCardService.ParseCard(CardSamples.JsonSorcery);
+            var sorcery = new MtgCardService().ParseCardJson(CardSamples.JsonSorcery);
 
             // Act - Assert
             Assert.IsFalse(sorcery.IsAnArtifact);
@@ -123,5 +124,40 @@ namespace mtgtools.Tests.Models
             Assert.IsFalse(sorcery.IsAPlaneswalker);
             Assert.IsTrue(sorcery.IsASorcery);
         }
+
+        [TestMethod]
+        public void CanTellHasAbility()
+        {
+            // Arrange
+            var card = new Card();
+
+            // Assert
+            Assert.IsFalse(card.HasAbility<FlyingStaticAbility>());
+            Assert.IsFalse(card.HasAbility<SummoningSicknessStaticAbility>());
+
+            card.Abilities.Add(new SummoningSicknessStaticAbility());
+
+            // Act - Assert
+            Assert.IsFalse(card.HasAbility<FlyingStaticAbility>());
+            Assert.IsTrue(card.HasAbility<SummoningSicknessStaticAbility>());
+        }
+
+        [TestMethod]
+        public void CanGetAbility()
+        {
+            // Arrange
+            var card = new Card();
+
+            // Assert
+            Assert.AreEqual(null, card.GetAbility<FlyingStaticAbility>());
+            Assert.AreEqual(null, card.GetAbility<SummoningSicknessStaticAbility>());
+
+            card.Abilities.Add(new SummoningSicknessStaticAbility());
+
+            // Act - Assert
+            Assert.AreEqual(null, card.GetAbility<FlyingStaticAbility>());
+            Assert.IsInstanceOfType(card.GetAbility<SummoningSicknessStaticAbility>(), typeof(SummoningSicknessStaticAbility));
+        }
+
     }
 }

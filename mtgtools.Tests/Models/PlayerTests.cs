@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using mtgtools.Models;
 using mtgtools.Services;
+using mtgtools.Models.Algorithms;
 
 namespace mtgtools.Tests.Models
 {
@@ -16,8 +17,8 @@ namespace mtgtools.Tests.Models
         public void CanStartGame()
         {
             // Arrange
-            var deck = new MtgCardService().ParseDeckList("CanStartGame", Format.Legacy, SampleDeckLists.SimpleSample);
-            var player = new Player(deck);
+            var deck = new MtgCardService().ParseDeckListJson("CanStartGame", Format.Legacy, SampleDeckListsJson.SimpleSample);
+            var player = new Player(deck, new NoPlayerAI());
             var expectedStartingHand = 7;
             var expectedStartingLibrary = deck.Cards.Count - expectedStartingHand;
 
@@ -27,6 +28,57 @@ namespace mtgtools.Tests.Models
             // Assert
             Assert.AreEqual(expectedStartingHand, player.Hand.Cards.Count);
             Assert.AreEqual(expectedStartingLibrary, player.Library.Cards.Count);
+        }
+
+        [TestMethod]
+        public void CanTakeMulligan()
+        {
+            // Arrange
+            var deck = new MtgCardService().ParseDeckListJson("CanTakeMulligan", Format.Legacy, SampleDeckListsJson.SimpleSample);
+            var firstMulligan = 4;
+            var player = new Player(deck, new NoPlayerAI(), 20, firstMulligan);
+
+            // Act
+            player.TakeMulligan();
+
+            // Assert
+            Assert.AreEqual(4, player.Hand.Cards.Count);
+            Assert.AreEqual(deck.Cards.Count - 4, player.Library.Cards.Count);
+
+            // Act
+            player.TakeMulligan();
+
+            // Assert
+            Assert.AreEqual(3, player.Hand.Cards.Count);
+            Assert.AreEqual(deck.Cards.Count - 3, player.Library.Cards.Count);
+
+            // Act
+            player.TakeMulligan();
+
+            // Assert
+            Assert.AreEqual(2, player.Hand.Cards.Count);
+            Assert.AreEqual(deck.Cards.Count - 2, player.Library.Cards.Count);
+
+            // Act
+            player.TakeMulligan();
+
+            // Assert
+            Assert.AreEqual(1, player.Hand.Cards.Count);
+            Assert.AreEqual(deck.Cards.Count - 1, player.Library.Cards.Count);
+
+            // Act
+            player.TakeMulligan();
+
+            // Assert
+            Assert.AreEqual(0, player.Hand.Cards.Count);
+            Assert.AreEqual(deck.Cards.Count, player.Library.Cards.Count);
+
+            // Act
+            player.TakeMulligan();
+
+            // Assert
+            Assert.AreEqual(0, player.Hand.Cards.Count);
+            Assert.AreEqual(deck.Cards.Count, player.Library.Cards.Count);
         }
     }
 }

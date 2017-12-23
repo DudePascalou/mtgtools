@@ -17,32 +17,22 @@ namespace mtgtools.Services
 
         /// <summary>
         /// Compute statistics of what cards can be played within <paramref name="turnCount"/> turns
-        /// (ignoring what is opponent playing).
+        /// on a goldfish mode (considering opponent is doing nothing).
         /// TODO : statistics are computed among a large number of cases.
         /// </summary>
         /// <param name="turnCount">Turns count among which compute statistics.</param>
-        public DeckPlayabilityStatistics ComputePlayabilityStatistics(Deck deck, IChoiceAlgorithm choiceAlgorithm, int turnCount)
+        public DeckPlayabilityStatistics ComputePlayabilityStatistics(Deck deck, Player player, int turnCount)
         {
             var stats = new DeckPlayabilityStatistics(deck, turnCount);
             var gameStats = stats.AddGame();
 
-            var player = new Player(deck);
             player.ShuffleLibrary();
             player.Draw(7);
             gameStats.AddStartingHand(player.Hand);
 
-            for (int turn = 0; turn < turnCount; turn++)
+            for (int turn = 1; turn <= turnCount; turn++)
             {
-                player.StartTheTurn();
-                while (choiceAlgorithm.ChooseLand(out Card land))
-                {
-                    player.Play(land);
-                }
-                while (choiceAlgorithm.ChooseSpell(out Card spell))
-                {
-                    player.Play(spell);
-                }
-                player.PassTheTurn();
+                player.TakeTurn(turn, turn == 1);
 
                 var turnStats = gameStats.AddNewTurn();
                 turnStats.Creatures = player.Battlefield.Creatures().ToList();

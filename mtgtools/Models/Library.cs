@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mtgtools.Models.Zones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -11,7 +12,12 @@ namespace mtgtools.Models
         { }
 
         public Library(IList<Card> cards) : base(cards)
-        { }
+        {
+            //foreach (var card in cards)
+            //{
+            //    card.Zone = Zone.LibraryZone;
+            //}
+        }
 
         public void Shuffle()
         {
