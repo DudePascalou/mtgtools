@@ -183,12 +183,14 @@
     <Compile Include="Models\Abilities\ActivatedAbilityBase.cs" />
     <Compile Include="Models\Abilities\DrawCardActivatedAbility.cs" />
     <Compile Include="Models\Abilities\FlyingStaticAbility.cs" />
+    <Compile Include="Models\Abilities\HasteStaticAbility.cs" />
     <Compile Include="Models\Abilities\IAbility.cs" />
     <Compile Include="Models\Abilities\IActivatedAbility.cs" />
     <Compile Include="Models\Abilities\StaticAbilityBase.cs" />
     <Compile Include="Models\Abilities\TriggeredAbilityBase.cs" />
     <Compile Include="Models\Algorithms\NoPlayerAI.cs" />
     <Compile Include="Models\Conditions\IsInHandCondition.cs" />
+    <Compile Include="Models\Conditions\IsOnBattlefieldCondition.cs" />
     <Compile Include="Models\Conditions\NoCondition.cs" />
     <Compile Include="Models\Costs\CostBase.cs" />
     <Compile Include="Models\Costs\ICost.cs" />
@@ -220,16 +222,21 @@
     <Compile Include="Models\Graveyard.cs" />
     <Compile Include="Models\Hand.cs" />
     <Compile Include="Models\ICardSet.cs" />
+    <Compile Include="Models\IEnumerableExtensions.cs" />
+    <Compile Include="Models\ISpell.cs" />
+    <Compile Include="Models\IStackable.cs" />
     <Compile Include="Models\Library.cs" />
     <Compile Include="Models\ManaPool.cs" />
     <Compile Include="Models\OutOfTheGame.cs" />
     <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\RawMana.Designer.cs">
+    <Compile Include="Models\Mana.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RawMana.resx</DependentUpon>
+      <DependentUpon>Mana.resx</DependentUpon>
     </Compile>
+    <Compile Include="Models\CryptoRandom.cs" />
     <Compile Include="Models\Set.cs" />
+    <Compile Include="Models\Stack.cs" />
     <Compile Include="Models\Statistics\DeckPlayabilityStatistics.cs" />
     <Compile Include="Models\Statistics\GamePlayabilityStatistics.cs" />
     <Compile Include="Models\Statistics\TurnPlayabilityStatistics.cs" />
@@ -337,9 +344,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>CardTypes.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Models\RawMana.resx">
+    <EmbeddedResource Include="Models\Mana.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>RawMana.Designer.cs</LastGenOutput>
+      <LastGenOutput>Mana.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

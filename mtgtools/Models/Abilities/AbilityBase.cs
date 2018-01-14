@@ -12,11 +12,20 @@ namespace mtgtools.Models.Abilities
         public Card Card { get; set; }
         public ICondition Condition { get; set; }
         public bool IsLegal { get; set; }
-        public bool IsAManaAbility { get; set; }
+        public abstract bool IsAManaAbility { get; }
+        public bool IsAvailable { get { return Condition.IsTrue(); } }
+
+        public AbilityBase()
+        { }
+        public AbilityBase(ICondition condition)
+        {
+            Condition = condition;
+        }
 
         public TCondition GetCondition<TCondition>() where TCondition : class, ICondition
         {
             return Condition as TCondition;
         }
+        public abstract IAbility Clone();
     }
 }

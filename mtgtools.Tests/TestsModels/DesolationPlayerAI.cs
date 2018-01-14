@@ -16,6 +16,10 @@ namespace mtgtools.Tests.TestsModels
     /// </summary>
     class DesolationPlayerAI : IPlayerAI
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private Func<IOrderedEnumerable<Card>> _CardsToPlayFirstQuery;
         public Player Player { get; set; }
 
         //private IDictionary<string, TypedMana> _AvailableManaInHandByName;
@@ -40,6 +44,11 @@ namespace mtgtools.Tests.TestsModels
             //    { "Spawning Bed", TypedMana.Parse("{C}") },
             //    { "Unclaimed Territory", TypedMana.Parse("{C}") },
             //};
+            _CardsToPlayFirstQuery = () => Player.Hand.Cards
+                .Where(c => !c.IsALand)
+                .OrderByDescending(c => c.Cmc) // 1. Aggro : play highest CMC card first
+                .ThenByDescending(c => c.HasAbility<ManaActivatedAbility>()) // 2. Ramp : play mana producing cards first
+                .ThenByDescending(c => c.HasAbility<DrawCardActivatedAbility>()); // 3. Fasten drawing
         }
 
         public Card ChooseCard()
@@ -57,16 +66,10 @@ namespace mtgtools.Tests.TestsModels
             // 3. Add player's available mana :
             var totalManaAvailable = Player.GetAvailableMana();
             // 4.5.6. Try to cast the most expensive card in hand or a ramp card, or a draw card :
-            var sortedCards = Player.Hand.Cards
-                .OrderByDescending(c => c.Cmc)
-                .ThenByDescending(c => c.HasAbility<ManaActivatedAbility>())
-                .ThenByDescending(c => c.HasAbility<DrawCardActivatedAbility>());
-            foreach (var card in sortedCards)
+            var cardToPlay = _CardsToPlayFirstQuery().FirstOrDefault(c => totalManaAvailable.IsEnoughFor(c.TypedManaCost));
+            if (cardToPlay != null)
             {
-                if (totalManaAvailable.IsEnoughFor(card.TypedManaCost))
-                {
-                    return card;
-                }
+                return cardToPlay;
             }
 
             // TODO 7.Draw card
@@ -76,22 +79,87 @@ namespace mtgtools.Tests.TestsModels
 
         private Card ChooseLand()
         {
+            // TODO : bilands, lands that enters the battlefield tapped,...
             var lands = Player.Hand.Lands().ToList();
-            if (lands.Count == 1)
+            if (!lands.Any())
             {
-                // Only one land in hand :
-                return Player.Hand.Cards.First(c => c.IsALand);
+                // 1. No land...
+                return null;
+            }
+            else if (lands.Count == 1)
+            {
+                // 2. Only one land in hand :
+                return lands[0];
             }
             else if (lands.Select(c => c.Name).Distinct().Count() == 1)
             {
-                // Same land :
-                return Player.Hand.Cards.First(c => c.IsALand);
+                // 3. Same land :
+                return lands[0];
             }
             else
             {
-                // TODO : Choose the best land to play :
+                // 4. Choose the best land to play :
+                // 4.1. Be able to cast a card in Hand :
+                var totalManaAvailable = Player.GetAvailableMana();
+                var sortedCards = _CardsToPlayFirstQuery()
+                    .Where(c => !totalManaAvailable.IsEnoughFor(c.TypedManaCost))
+                    .ToList();
+                var potentialCardsToCastByLand = new Dictionary<Card, List<Card>>();
+                foreach (var land in lands)
+                {
+                    var potentialManaAvailable = totalManaAvailable.Clone();
+                    potentialManaAvailable.Add(land?.GetAbility<ManaActivatedAbility>()?.GetEffect<AddToManaPoolEffect>()?.AvailableMana);
+                    var potentialCardsToPlay = _CardsToPlayFirstQuery().Where(c => totalManaAvailable.IsEnoughFor(c.TypedManaCost)).ToList();
+                    if (potentialCardsToPlay.Any())
+                    {
+                        if (!potentialCardsToCastByLand.ContainsKey(land))
+                        {
+                            potentialCardsToCastByLand.Add(land, potentialCardsToPlay);
+                        }
+                        else
+                        {
+                            potentialCardsToCastByLand[land].AddRange(potentialCardsToPlay);
+                        }
+                    }
+                }
 
-                return null;
+                Card bestCardToPlay = null;
+                Card bestLandToPlay = null;
+                foreach (var kv in potentialCardsToCastByLand)
+                {
+                    var bestCardToPlayForLand = kv.Value.OrderByDescending(c => c.Cmc).First();
+                    if (bestCardToPlay == null)
+                    {
+                        bestCardToPlay = bestCardToPlayForLand;
+                        bestLandToPlay = kv.Key;
+                    }
+                    else if (bestCardToPlayForLand.Cmc > bestCardToPlay.Cmc)
+                    {
+                        bestCardToPlay = bestCardToPlayForLand;
+                        bestLandToPlay = kv.Key;
+                    }
+                    else if (bestCardToPlayForLand.Cmc == bestCardToPlay.Cmc)
+                    {
+                        // Choose the one with ramp or draw card ability :
+                        if (bestCardToPlayForLand.HasAbility<ManaActivatedAbility>() ||
+                            bestCardToPlayForLand.HasAbility<DrawCardActivatedAbility>())
+                        {
+                            bestCardToPlay = bestCardToPlayForLand;
+                            bestLandToPlay = kv.Key;
+                        }
+                        // TODO : smarten this part...
+                    }
+                }
+
+                // 4.2. No card can be cast with a land from hand, 
+                // choose a random land :
+                if (bestLandToPlay == null)
+                {
+                    var landIndex = CryptoRandom.NextInt(0, lands.Count - 1);
+                    bestLandToPlay = lands[landIndex];
+                }
+
+                return bestLandToPlay;
             }
         }
     }

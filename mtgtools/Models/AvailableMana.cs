@@ -5,7 +5,7 @@ using System.Web;
 
 namespace mtgtools.Models
 {
-    public class AvailableMana : ICloneable
+    public class AvailableMana
     {
         /// <summary>
         /// Any color of mana (color only, not colorless).
@@ -24,6 +24,7 @@ namespace mtgtools.Models
         public int Black { get; set; }
         public int Red { get; set; }
         public int Green { get; set; }
+        public bool ProducesOnlyOneMana { get { return (AnyType + AnyColor + Colorless + White + Blue + Black + Red + Green) == 1; } }
 
         public AvailableMana() : this(string.Empty)
         { }
@@ -42,35 +43,35 @@ namespace mtgtools.Models
 
             foreach (var rawType in rawTypes)
             {
-                if (rawType == RawMana.AnyType)
+                if (rawType == Mana.AnyType)
                 {
                     AnyType++;
                 }
-                if (rawType == RawMana.AnyColor)
+                if (rawType == Mana.AnyColor)
                 {
                     AnyColor++;
                 }
-                if (rawType == RawMana.Colorless)
+                if (rawType == Mana.Colorless)
                 {
                     Colorless++;
                 }
-                if (rawType == RawMana.White)
+                if (rawType == Mana.White)
                 {
                     White++;
                 }
-                if (rawType == RawMana.Blue)
+                if (rawType == Mana.Blue)
                 {
                     Blue++;
                 }
-                if (rawType == RawMana.Black)
+                if (rawType == Mana.Black)
                 {
                     Black++;
                 }
-                if (rawType == RawMana.Red)
+                if (rawType == Mana.Red)
                 {
                     Red++;
                 }
-                if (rawType == RawMana.Green)
+                if (rawType == Mana.Green)
                 {
                     Green++;
                 }
@@ -79,19 +80,22 @@ namespace mtgtools.Models
 
         public void Add(AvailableMana availableMana)
         {
-            AnyColor += availableMana.AnyColor;
-            AnyType += availableMana.AnyType;
-            Colorless += availableMana.Colorless;
-            White += availableMana.White;
-            Blue += availableMana.Blue;
-            Black += availableMana.Black;
-            Red += availableMana.Red;
-            Green += availableMana.Green;
+            if (availableMana != null)
+            {
+                AnyColor += availableMana.AnyColor;
+                AnyType += availableMana.AnyType;
+                Colorless += availableMana.Colorless;
+                White += availableMana.White;
+                Blue += availableMana.Blue;
+                Black += availableMana.Black;
+                Red += availableMana.Red;
+                Green += availableMana.Green;
+            }
         }
 
-        public bool IsEnoughFor(TypedMana typedManaCost)
+        public bool IsEnoughFor(TypedMana typedManaCost) // rawMana instead of TypedMana
         {
-            var availableMana = (AvailableMana)Clone();
+            var availableMana = Clone();
 
             // Colorless
             if (typedManaCost.Colorless > 0)
@@ -266,7 +270,22 @@ namespace mtgtools.Models
                     return false;
                 }
             }
+            // Generic
+            if (typedManaCost.Generic > 0)
+            {
+                return typedManaCost.Generic <=
+                (
+                    availableMana.AnyColor +
+                    availableMana.AnyType +
+                    availableMana.White +
+                    availableMana.Blue +
+                    availableMana.Black +
+                    availableMana.Red +
+                    availableMana.Green
+                );
+            }
 
+            // Not expected to happen :
             if (availableMana.AnyColor < 0 ||
                 availableMana.AnyType < 0 ||
                 availableMana.White < 0 ||
@@ -286,7 +305,7 @@ namespace mtgtools.Models
             return $"AT:{AnyType}-AC:{AnyColor}-C:{Colorless}-W:{White}-U:{Blue}-B:{Black}-R:{Red}-G:{Green}";
         }
 
-        public object Clone()
+        public AvailableMana Clone()
         {
             return new AvailableMana()
             {

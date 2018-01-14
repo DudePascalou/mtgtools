@@ -1,5 +1,6 @@
 ﻿using mtgtools.Models.Abilities;
 using mtgtools.Models.Algorithms;
+using mtgtools.Models.Conditions;
 using mtgtools.Models.Effects;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,13 @@ namespace mtgtools.Models
             _LandCountAllowedToPlayEachTurn = 1;
             _NextMulliganCardCount = firstMulligan;
             Deck = deck ?? throw new ArgumentNullException();
+            foreach (var card in Deck.Cards)
+            {
+                foreach (var ability in card.Abilities)
+                {
+                    ability.Owner = this;
+                }
+            }
             // 103.3 Each player begins the game with a starting life total of 20.
             StartingLife = startingLife;
             Life = StartingLife;
@@ -51,6 +59,7 @@ namespace mtgtools.Models
             OutOfTheGame = new OutOfTheGame();
             AI = playerAI ?? throw new ArgumentNullException();
             AI.Player = this; // TODO : Can we do without this back reference?
+            ManaPool = new ManaPool();
         }
 
         public void ShuffleLibrary()
@@ -99,7 +108,8 @@ namespace mtgtools.Models
         public void StartTheTurn()
         {
             _LandPlayedThisTurn = 0;
-            // XXX Remove summoning sickness :
+            // 302.6. When a creature enters the battlefield, it has “summoning sickness” 
+            // until it has been under its controller’s control continuously since his or her most recent turn began.
             foreach (var creature in Battlefield.Creatures())
             {
                 var ssaList = creature.Abilities.Where(a => a.GetType() == typeof(SummoningSicknessStaticAbility)).ToList();
@@ -108,30 +118,29 @@ namespace mtgtools.Models
                     creature.Abilities.Remove(ssa);
                 }
             }
+            // xxx.x Untap permanents :
+            foreach (var card in Battlefield.Cards)
+            {
+                card.Untap();
+            }
+            // xxx.x Draw a card :
+            Draw(1);
         }
 
         public void Play(Card card)
         {
-            // TODO : play a card from another zone than the Hand...
-            if (Hand.Pop(card))
+            // TODO : be able to play a card from another zone than the Hand...
+            if (card.IsALand && CanPlayLand)
             {
-                if (card.IsALand && CanPlayLand)
-                {
-                    _LandPlayedThisTurn++;
-                    Battlefield.Enter(card);
-                }
-                else if (CanPayManaCost(card))
-                {
-                    PayManaCost(card);
-                    Battlefield.Enter(card);
-                }
-                else
-                {
-                    // The card cannot be played, 
-                    // put it back in the hand
-                    // (this is not meant to happen):
-                    Hand.Push(card);
-                }
+                Hand.Pop(card);
+                _LandPlayedThisTurn++;
+                Battlefield.Enter(card);
+            }
+            else if (!card.IsALand && CanPayManaCost(card))
+            {
+                Hand.Pop(card);
+                PayManaCost(card);
+                Battlefield.Enter(card);
             }
         }
 
@@ -139,14 +148,19 @@ namespace mtgtools.Models
         {
             var availableMana = new AvailableMana();
 
-            foreach (var cardInHand in Hand.Cards)
+            foreach (var availableManaAbility in GetAvailableAbilities<ManaActivatedAbility>())
             {
-                availableMana.Add(cardInHand.GetAbility<ManaActivatedAbility>().GetEffect<AddToManaPoolEffect>().AvailableMana);
+                availableMana.Add(availableManaAbility?.GetEffect<AddToManaPoolEffect>()?.AvailableMana);
             }
-            foreach (var cardOnTheBattlefield in Battlefield.Cards.Where(c => !c.HasAbility<SummoningSicknessStaticAbility>()))
-            {
-                availableMana.Add(cardOnTheBattlefield.GetAbility<ManaActivatedAbility>().GetEffect<AddToManaPoolEffect>().AvailableMana);
-            }
+
+            //foreach (var cardInHand in Hand.Cards)
+            //{
+            //    availableMana.Add(cardInHand?.GetAvailableAbility<ManaActivatedAbility>());
+            //}
+            //foreach (var cardOnTheBattlefield in Battlefield.Cards)
+            //{
+            //    availableMana.Add(cardOnTheBattlefield?.GetAvailableAbility<ManaActivatedAbility>()?.GetEffect<AddToManaPoolEffect>()?.AvailableMana);
+            //}
 
             return availableMana;
         }
@@ -168,13 +182,203 @@ namespace mtgtools.Models
             return canPay;
         }
 
-        private void PayManaCost(Card card)
+        public void PayManaCost(Card card)
         {
-            // TODO : PayManaCost
+            var remainingManaCost = card.TypedManaCost.Clone();
+            var availableManaEffects = GetAvailableAbilities<ManaActivatedAbility>()
+                .Select(a => a.GetEffect<AddToManaPoolEffect>())
+                .Where(e => e != null)
+                .ToList();
+
+            // TODO : take into account !e.AvailableMana.ProducesOnlyOneMana...
+
+            // Pay Colorless
+            if (remainingManaCost.Colorless > 0)
+            {
+                var onlyOneManaEffect = availableManaEffects
+                    .Where(e => e.AvailableMana.ProducesOnlyOneMana)
+                    .Where(e => e.AvailableMana.Colorless > 0 || e.AvailableMana.AnyType > 0)
+                    .OrderBy(e => e.AvailableMana.Colorless > 0)
+                    .ThenBy(e => e.AvailableMana.AnyType > 0)
+                    .ToList();
+                while (remainingManaCost.Colorless > 0)
+                {
+                    var ability = (IActivatedAbility)onlyOneManaEffect[0].Ability;
+                    if (ability.IsAvailable)
+                    {
+                        ability.Activate();
+                    }
+                    onlyOneManaEffect.RemoveAt(0);
+                    remainingManaCost.Colorless--;
+                }
+            }
+            // Pay White
+            if (remainingManaCost.White > 0)
+            {
+                var onlyOneManaEffect = availableManaEffects
+                    .Where(e => e.AvailableMana.ProducesOnlyOneMana)
+                    .Where(e => e.AvailableMana.White > 0 || e.AvailableMana.AnyColor > 0 || e.AvailableMana.AnyType > 0)
+                    .OrderBy(e => e.AvailableMana.White > 0)
+                    .ThenBy(e => e.AvailableMana.AnyColor > 0)
+                    .ThenBy(e => e.AvailableMana.AnyType > 0)
+                    .ToList();
+                while (remainingManaCost.White > 0)
+                {
+                    var ability = (IActivatedAbility)onlyOneManaEffect[0].Ability;
+                    if (ability.IsAvailable)
+                    {
+                        ability.Activate();
+                    }
+                    onlyOneManaEffect.RemoveAt(0);
+                    remainingManaCost.White--;
+                }
+            }
+            // Pay Blue
+            if (remainingManaCost.Blue > 0)
+            {
+                var onlyOneManaEffect = availableManaEffects
+                    .Where(e => e.AvailableMana.ProducesOnlyOneMana)
+                    .Where(e => e.AvailableMana.Blue > 0 || e.AvailableMana.AnyColor > 0 || e.AvailableMana.AnyType > 0)
+                    .OrderBy(e => e.AvailableMana.Blue > 0)
+                    .ThenBy(e => e.AvailableMana.AnyColor > 0)
+                    .ThenBy(e => e.AvailableMana.AnyType > 0)
+                    .ToList();
+                while (remainingManaCost.Blue > 0)
+                {
+                    var ability = (IActivatedAbility)onlyOneManaEffect[0].Ability;
+                    if (ability.IsAvailable)
+                    {
+                        ability.Activate();
+                    }
+                    onlyOneManaEffect.RemoveAt(0);
+                    remainingManaCost.Blue--;
+                }
+            }
+            // Pay Black
+            if (remainingManaCost.Black > 0)
+            {
+                var onlyOneManaEffect = availableManaEffects
+                    .Where(e => e.AvailableMana.ProducesOnlyOneMana)
+                    .Where(e => e.AvailableMana.Black > 0 || e.AvailableMana.AnyColor > 0 || e.AvailableMana.AnyType > 0)
+                    .OrderBy(e => e.AvailableMana.Black > 0)
+                    .ThenBy(e => e.AvailableMana.AnyColor > 0)
+                    .ThenBy(e => e.AvailableMana.AnyType > 0)
+                    .ToList();
+                while (remainingManaCost.Black > 0)
+                {
+                    var ability = (IActivatedAbility)onlyOneManaEffect[0].Ability;
+                    if (ability.IsAvailable)
+                    {
+                        ability.Activate();
+                    }
+                    onlyOneManaEffect.RemoveAt(0);
+                    remainingManaCost.Black--;
+                }
+            }
+            // Pay Red
+            if (remainingManaCost.Red > 0)
+            {
+                var onlyOneManaEffect = availableManaEffects
+                    .Where(e => e.AvailableMana.ProducesOnlyOneMana)
+                    .Where(e => e.AvailableMana.Red > 0 || e.AvailableMana.AnyColor > 0 || e.AvailableMana.AnyType > 0)
+                    .OrderBy(e => e.AvailableMana.Red > 0)
+                    .ThenBy(e => e.AvailableMana.AnyColor > 0)
+                    .ThenBy(e => e.AvailableMana.AnyType > 0)
+                    .ToList();
+                while (remainingManaCost.Red > 0)
+                {
+                    var ability = (IActivatedAbility)onlyOneManaEffect[0].Ability;
+                    if (ability.IsAvailable)
+                    {
+                        ability.Activate();
+                    }
+                    onlyOneManaEffect.RemoveAt(0);
+                    remainingManaCost.Red--;
+                }
+            }
+            // Pay Green
+            if (remainingManaCost.Green > 0)
+            {
+                var onlyOneManaEffect = availableManaEffects
+                    .Where(e => e.AvailableMana.ProducesOnlyOneMana)
+                    .Where(e => e.AvailableMana.Green > 0 || e.AvailableMana.AnyColor > 0 || e.AvailableMana.AnyType > 0)
+                    .OrderBy(e => e.AvailableMana.Green > 0)
+                    .ThenBy(e => e.AvailableMana.AnyColor > 0)
+                    .ThenBy(e => e.AvailableMana.AnyType > 0)
+                    .ToList();
+                while (remainingManaCost.Green > 0)
+                {
+                    var ability = (IActivatedAbility)onlyOneManaEffect[0].Ability;
+                    if (ability.IsAvailable)
+                    {
+                        ability.Activate();
+                    }
+                    onlyOneManaEffect.RemoveAt(0);
+                    remainingManaCost.Green--;
+                }
+            }
+            // Pay Generic
+            if (remainingManaCost.Generic > 0)
+            {
+                var onlyOneManaEffect = availableManaEffects
+                    .Where(e => e.AvailableMana.ProducesOnlyOneMana)
+                    .Where(e => e.Ability.IsAvailable)
+                    .ToList();
+                while (remainingManaCost.Generic > 0)
+                {
+                    var ability = (IActivatedAbility)onlyOneManaEffect[0].Ability;
+                    if (ability.IsAvailable)
+                    {
+                        ability.Activate();
+                    }
+                    onlyOneManaEffect.RemoveAt(0);
+                    remainingManaCost.Generic--;
+                }
+            }
+            // Pay X
+            if ((remainingManaCost.XValue * remainingManaCost.X) > 0)
+            {
+                var onlyOneManaEffect = availableManaEffects
+                    .Where(e => e.AvailableMana.ProducesOnlyOneMana)
+                    .Where(e => e.Ability.IsAvailable)
+                    .ToList();
+                for (int i = 0; i < remainingManaCost.X; i++)
+                {
+                    var remainingX = remainingManaCost.XValue;
+                    while (remainingX > 0)
+                    {
+                        var ability = (IActivatedAbility)onlyOneManaEffect[0].Ability;
+                        if (ability.IsAvailable)
+                        {
+                            ability.Activate();
+                        }
+                        onlyOneManaEffect.RemoveAt(0);
+                        remainingX--;
+                    }
+                }
+            }
+
+            ManaPool.Pay(card.TypedManaCost);
+        }
+
+        private IEnumerable<T> GetAvailableAbilities<T>() where T : class, IAbility
+        {
+            T ability;
+            foreach (var cardInHand in Hand.Cards)
+            {
+                ability = cardInHand?.GetAvailableAbility<T>();
+                if (ability != null) yield return ability;
+            }
+            foreach (var cardOnTheBattlefield in Battlefield.Cards)
+            {
+                ability = cardOnTheBattlefield?.GetAvailableAbility<T>();
+                if (ability != null) yield return ability;
+            }
         }
 
         public void PassTheTurn()
         {
+            // TODO : discard cards more than 7 (or overriden number)
         }
 
         public void RemoveFromTheGame(Card card)

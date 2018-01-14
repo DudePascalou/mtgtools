@@ -15,8 +15,13 @@ namespace mtgtools.Models.Abilities
         /// <summary>
         /// Tells whether the current ability is a mana ability (605).
         /// </summary>
-        bool IsAManaAbility { get; set; }
+        bool IsAManaAbility { get; }
+        /// <summary>
+        /// Tells whether the current ability is available.
+        /// </summary>
+        bool IsAvailable { get; }
 
         TCondition GetCondition<TCondition>() where TCondition : class, ICondition;
+        IAbility Clone();
     }
 }

@@ -78,9 +78,10 @@ namespace mtgtools.Services
         /// </example>
         public Deck ParseDeckList(string name, Format format, string deckList)
         {
-            var deck = new Deck(name, format);
-
             var nbAndNames = deckList.Split(new string[] { Environment.NewLine, "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var cards = new List<Card>();
+            var sideboardCards = new List<Card>();
+
             foreach (var nbAndName in nbAndNames)
             {
                 if (nbAndName.StartsWith(Resources.CommentPrefix)) continue;
@@ -103,11 +104,22 @@ namespace mtgtools.Services
                 var card = FindByName(cardName);
                 if (card != null)
                 {
-                    deck.Add(card, cardCount, toSideboard);
+                    //card.Add(card, cardCount, toSideboard);
+                    for (int i = 0; i < cardCount; i++)
+                    {
+                        if (!toSideboard)
+                        {
+                            cards.Add(card);
+                        }
+                        else
+                        {
+                            sideboardCards.Add(card);
+                        }
+                    }
                 }
             }
 
-            return deck;
+            return new Deck(name, format, cards, sideboardCards);
         }
 
         public Card ParseCardJson(string cardJson)

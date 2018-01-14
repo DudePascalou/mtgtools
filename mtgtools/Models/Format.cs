@@ -10,6 +10,8 @@ namespace mtgtools.Models
     /// </summary>
     public class Format
     {
+        private static readonly Format _None;
+        public static Format None { get { return _None; } }
         private static readonly Format _Commander;
         public static Format Commander { get { return _Commander; } }
         private static readonly Format _Legacy;
@@ -21,6 +23,7 @@ namespace mtgtools.Models
 
         static Format()
         {
+            _None = new Format();
             _Commander = new Format();
             _Legacy = new Format();
             _Modern = new Format();

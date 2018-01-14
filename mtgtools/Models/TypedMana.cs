@@ -55,31 +55,31 @@ namespace mtgtools.Models
 
             foreach (var rawType in rawTypes)
             {
-                if (rawType == RawMana.X)
+                if (rawType == Mana.X)
                 {
                     X++;
                 }
-                if (rawType == RawMana.Colorless)
+                if (rawType == Mana.Colorless)
                 {
                     Colorless++;
                 }
-                if (rawType == RawMana.White)
+                if (rawType == Mana.White)
                 {
                     White++;
                 }
-                if (rawType == RawMana.Blue)
+                if (rawType == Mana.Blue)
                 {
                     Blue++;
                 }
-                if (rawType == RawMana.Black)
+                if (rawType == Mana.Black)
                 {
                     Black++;
                 }
-                if (rawType == RawMana.Red)
+                if (rawType == Mana.Red)
                 {
                     Red++;
                 }
-                if (rawType == RawMana.Green)
+                if (rawType == Mana.Green)
                 {
                     Green++;
                 }
@@ -140,6 +140,11 @@ namespace mtgtools.Models
                 Red = tm1.Red - tm2.Red,
                 Green = tm1.Green - tm2.Green
             };
+        }
+
+        public TypedMana Clone()
+        {
+            return Parse(_RawMana);
         }
     }
 }

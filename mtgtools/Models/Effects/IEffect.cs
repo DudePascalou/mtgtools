@@ -2,9 +2,9 @@
 
 namespace mtgtools.Models.Effects
 {
-    public interface IEffect
+    public interface IEffect : IStackable
     {
         IAbility Ability { get; set; }
-        void Resolves();
+        IEffect Clone();
     }
 }

@@ -21,6 +21,9 @@ namespace mtgtools.Tests.Models
             Assert.IsTrue(new AvailableMana("{W}{G}").IsEnoughFor(TypedMana.Parse("{1}{W}")));
             Assert.IsFalse(new AvailableMana("{W}{G}").IsEnoughFor(TypedMana.Parse("{W}{W}")));
             Assert.IsFalse(new AvailableMana("{W}{G}").IsEnoughFor(TypedMana.Parse("{G}{G}")));
+            Assert.IsTrue(new AvailableMana("{W}{G}").IsEnoughFor(TypedMana.Parse("{1}")));
+            Assert.IsTrue(new AvailableMana("{W}{G}").IsEnoughFor(TypedMana.Parse("{2}")));
+            Assert.IsFalse(new AvailableMana("{W}{G}").IsEnoughFor(TypedMana.Parse("{3}")));
 
             Assert.IsTrue(new AvailableMana("{AC}{AT}{C}{W}{U}{B}{R}{G}").IsEnoughFor(TypedMana.Parse("{W}")));
             Assert.IsTrue(new AvailableMana("{AC}{AT}{C}{W}{U}{B}{R}{G}").IsEnoughFor(TypedMana.Parse("{W}{W}")));
@@ -32,7 +35,7 @@ namespace mtgtools.Tests.Models
             Assert.IsTrue(new AvailableMana("{AC}{AT}{C}{W}{U}{B}{R}{G}").IsEnoughFor(TypedMana.Parse("{B}{B}{R}{R}{G}")));
             Assert.IsFalse(new AvailableMana("{AC}{AT}{C}{W}{U}{B}{R}{G}").IsEnoughFor(TypedMana.Parse("{B}{B}{R}{R}{G}{G}")));
 
-            // TODO bilands ?
+            // TODO bilands...
         }
     }
 }

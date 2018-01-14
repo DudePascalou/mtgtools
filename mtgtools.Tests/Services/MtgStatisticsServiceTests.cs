@@ -21,6 +21,11 @@ namespace mtgtools.Tests.Services
             //svc.LoadCardsDatabase();
             var deck = svc.ParseDeckListJson("Desolation", Format.Legacy, SampleDeckListsJson.Desolation);
             //var str = Newtonsoft.Json.JsonConvert.SerializeObject(deck.Cards);
+            var abilitySvc = new MtgAbilityService();
+            foreach (var card in deck.Cards)
+            {
+                abilitySvc.AffectAbilities(card);
+            }
             var statsSvc = new MtgStatisticsService();
             var playerAI = new DesolationPlayerAI();
             var player = new Player(deck, playerAI);

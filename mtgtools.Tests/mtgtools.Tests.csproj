@@ -103,8 +103,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CardSamples.resx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Abilities\ActivatedAbilityTests.cs" />
+    <Compile Include="Models\Abilities\IAbilityTests.cs" />
     <Compile Include="Models\AvailableManaTests.cs" />
     <Compile Include="Models\CardTests.cs" />
+    <Compile Include="Models\Condition\IConditionTests.cs" />
     <Compile Include="Models\GameTests.cs" />
     <Compile Include="Models\PlayerTests.cs" />
     <Compile Include="Models\TypedManaTests.cs" />

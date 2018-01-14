@@ -80,5 +80,97 @@ namespace mtgtools.Tests.Models
             Assert.AreEqual(0, player.Hand.Cards.Count);
             Assert.AreEqual(deck.Cards.Count, player.Library.Cards.Count);
         }
+
+        [TestMethod]
+        public void CanGetAvailableMana()
+        {
+            // Arrange
+            //Bane of Bala Ged    {7}
+            //Thought - Knot Seer   {3}{C}
+            //Elvish Spirit Guide {2}{G}
+            //Magus of the Library    {G}{G}
+            //Forest
+            //Ghost Quarter
+            //Spawning Bed
+            var svc = new MtgCardService();
+            var deck = svc.ParseDeckListJson("CanGetAvailableMana", Format.None, SampleDeckListsJson.CanGetAvailableMana);
+            var abilitySvc = new MtgAbilityService();
+            foreach (var card in deck.Cards)
+            {
+                abilitySvc.AffectAbilities(card);
+            }
+            var playerAI = new NoPlayerAI();
+            var player = new Player(deck, playerAI);
+            player.ShuffleLibrary();
+            player.Draw(7);
+            var expectedAvailableMana = new AvailableMana();
+
+            // Act
+            var actualAvailableMana = player.GetAvailableMana();
+
+            // Assert
+            Assert.AreEqual("AT:0-AC:0-C:0-W:0-U:0-B:0-R:0-G:1", actualAvailableMana.ToString());
+
+            // Arrange
+            var forest = player.Hand.Get("Forest");
+            player.Play(forest);
+
+            // Act
+            actualAvailableMana = player.GetAvailableMana();
+
+            // Assert
+            Assert.AreEqual("AT:0-AC:0-C:0-W:0-U:0-B:0-R:0-G:2", actualAvailableMana.ToString());
+
+            // Arrange
+            var magus = player.Hand.Cards.First(c => c.Name == "Magus of the Library");
+            player.Play(magus); // Use Forest & Elvish Spirit Guide
+
+            // Act
+            actualAvailableMana = player.GetAvailableMana();
+
+            // Assert
+            Assert.AreEqual("AT:0-AC:0-C:0-W:0-U:0-B:0-R:0-G:0", actualAvailableMana.ToString());
+
+            // Arrange
+            player.PassTheTurn();
+            player.StartTheTurn();
+
+            // Act
+            actualAvailableMana = player.GetAvailableMana();
+
+            // Assert
+            Assert.AreEqual("AT:0-AC:0-C:1-W:0-U:0-B:0-R:0-G:1", actualAvailableMana.ToString());
+
+            // Arrange
+            var ghostQuarter = player.Hand.Cards.First(c => c.Name == "Ghost Quarter");
+            player.Play(ghostQuarter);
+
+            // Act
+            actualAvailableMana = player.GetAvailableMana();
+
+            // Assert
+            Assert.AreEqual("AT:0-AC:0-C:2-W:0-U:0-B:0-R:0-G:1", actualAvailableMana.ToString());
+
+        }
+
+        [TestMethod]
+        public void CanPayManaCost()
+        {
+            // Arrange
+            var svc = new MtgCardService();
+            var deck = svc.ParseDeckListJson("CanPayManaCost", Format.None, SampleDeckListsJson.Desolation);
+            var abilitySvc = new MtgAbilityService();
+            foreach (var card in deck.Cards)
+            {
+                abilitySvc.AffectAbilities(card);
+            }
+            var playerAI = new NoPlayerAI();
+            var player = new Player(deck, playerAI);
+
+            // Act
+
+            // Assert
+
+        }
     }
 }

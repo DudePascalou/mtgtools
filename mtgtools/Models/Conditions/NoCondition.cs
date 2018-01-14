@@ -9,7 +9,11 @@ namespace mtgtools.Models.Conditions
     public class NoCondition : ICondition
     {
         public IAbility Ability { get; set; }
-
-        public bool IsTrue { get { return true; } }
+        public bool IsTrue() { return true; }
+        
+        public ICondition Clone()
+        {
+            return new NoCondition();
+        }
     }
 }

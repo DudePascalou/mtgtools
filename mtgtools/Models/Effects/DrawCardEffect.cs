@@ -18,5 +18,10 @@ namespace mtgtools.Models.Effects
         {
             Ability.Owner.Draw(CardToDraw);
         }
+
+        public override IEffect Clone()
+        {
+            return new DrawCardEffect(CardToDraw);
+        }
     }
 }

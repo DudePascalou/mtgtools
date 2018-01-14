@@ -19,6 +19,11 @@ namespace mtgtools.Models
             Cards = new ObservableCollection<Card>(cards);// ?? throw new ArgumentNullException("cards");
         }
 
+        public Card Get(string name)
+        {
+            return Cards.FirstOrDefault(c => c.Name == name); 
+        }
+
         public IEnumerable<Card> Artifacts()
         {
             return Cards.Where(c => c.IsAnArtifact);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using mtgtools.Models.Abilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,6 +16,14 @@ namespace mtgtools.Models
 
         public void Enter(Card card)
         {
+            // 302.6. When a creature enters the battlefield, it has “summoning sickness” 
+            // until it has been under its controller’s control continuously since his or her most recent turn began.
+            if (card.IsACreature &&
+                !card.HasAbility<SummoningSicknessStaticAbility>() &&
+                !card.HasAbility<HasteStaticAbility>())
+            {
+                card.Abilities.Add(new SummoningSicknessStaticAbility());
+            }
             Cards.Add(card);
         }
     }

@@ -63,6 +63,33 @@ namespace mtgtools.Tests {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à [  
         ///   {  
+        ///      &quot;Name&quot;:&quot;Bane of Bala Ged&quot;,
+        ///      &quot;Names&quot;:null,
+        ///      &quot;ManaCost&quot;:&quot;{7}&quot;,
+        ///      &quot;Cmc&quot;:7.0,
+        ///      &quot;Colors&quot;:null,
+        ///      &quot;ColorIdentity&quot;:null,
+        ///      &quot;Type&quot;:&quot;Creature — Eldrazi&quot;,
+        ///      &quot;Supertypes&quot;:null,
+        ///      &quot;Types&quot;:[  
+        ///         &quot;Creature&quot;
+        ///      ],
+        ///      &quot;Subtypes&quot;:[  
+        ///         &quot;Eldrazi&quot;
+        ///      ],
+        ///      &quot;Rarity&quot;:&quot;Uncommon&quot;,
+        ///      &quot;Text&quot;:&quot;Whenever Bane of Bala Ged attacks, defending player exiles two permanents he or she controls.&quot;,
+        ///      &quot;Flavor&quot;:&quot;The continent of Bala Ged was r [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string CanGetAvailableMana {
+            get {
+                return ResourceManager.GetString("CanGetAvailableMana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à [  
+        ///   {  
         ///      &quot;Name&quot;:&quot;Nissa, Steward of Elements&quot;,
         ///      &quot;Names&quot;:null,
         ///      &quot;ManaCost&quot;:&quot;{X}{G}{U}&quot;,

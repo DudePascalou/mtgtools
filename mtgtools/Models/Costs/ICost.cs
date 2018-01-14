@@ -7,5 +7,6 @@ namespace mtgtools.Models.Costs
         IAbility Ability { get; set; }
         bool CanPay();
         void Pay();
+        ICost Clone();
     }
 }

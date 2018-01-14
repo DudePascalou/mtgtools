@@ -61,6 +61,128 @@ namespace mtgtools.Tests {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à {  
+        ///  &quot;Name&quot;:&quot;Bane of Bala Ged&quot;,
+        ///  &quot;Names&quot;:null,
+        ///  &quot;ManaCost&quot;:&quot;{7}&quot;,
+        ///  &quot;Cmc&quot;:7.0,
+        ///  &quot;Colors&quot;:null,
+        ///  &quot;ColorIdentity&quot;:null,
+        ///  &quot;Type&quot;:&quot;Creature — Eldrazi&quot;,
+        ///  &quot;Supertypes&quot;:null,
+        ///  &quot;Types&quot;:[  
+        ///	 &quot;Creature&quot;
+        ///  ],
+        ///  &quot;Subtypes&quot;:[  
+        ///	 &quot;Eldrazi&quot;
+        ///  ],
+        ///  &quot;Rarity&quot;:&quot;Uncommon&quot;,
+        ///  &quot;Text&quot;:&quot;Whenever Bane of Bala Ged attacks, defending player exiles two permanents he or she controls.&quot;,
+        ///  &quot;Flavor&quot;:&quot;The continent of Bala Ged was ravaged by massive Eldrazi of Ulamog&apos;s lineage, its lush jungles and cascading rive [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string BaneOfBalaGed {
+            get {
+                return ResourceManager.GetString("BaneOfBalaGed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {  
+        ///  &quot;Name&quot;:&quot;Elvish Spirit Guide&quot;,
+        ///  &quot;Names&quot;:null,
+        ///  &quot;ManaCost&quot;:&quot;{2}{G}&quot;,
+        ///  &quot;Cmc&quot;:3.0,
+        ///  &quot;Colors&quot;:[  
+        ///	 &quot;Green&quot;
+        ///  ],
+        ///  &quot;ColorIdentity&quot;:[  
+        ///	 &quot;G&quot;
+        ///  ],
+        ///  &quot;Type&quot;:&quot;Creature — Elf Spirit&quot;,
+        ///  &quot;Supertypes&quot;:null,
+        ///  &quot;Types&quot;:[  
+        ///	 &quot;Creature&quot;
+        ///  ],
+        ///  &quot;Subtypes&quot;:[  
+        ///	 &quot;Elf&quot;,
+        ///	 &quot;Spirit&quot;
+        ///  ],
+        ///  &quot;Rarity&quot;:&quot;Uncommon&quot;,
+        ///  &quot;Text&quot;:&quot;Exile Elvish Spirit Guide from your hand: Add {G} to your mana pool.&quot;,
+        ///  &quot;Flavor&quot;:&quot;\&quot;We are never without guidance, if we but seek it.\&quot;\n—Taaveti of Kelsinko, Elvish Hunter&quot;,
+        /// [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string ElvishSpiritGuide {
+            get {
+                return ResourceManager.GetString("ElvishSpiritGuide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {  
+        ///  &quot;Name&quot;:&quot;Forest&quot;,
+        ///  &quot;Names&quot;:null,
+        ///  &quot;ManaCost&quot;:null,
+        ///  &quot;Cmc&quot;:0.0,
+        ///  &quot;Colors&quot;:null,
+        ///  &quot;ColorIdentity&quot;:[  
+        ///	 &quot;G&quot;
+        ///  ],
+        ///  &quot;Type&quot;:&quot;Basic Land — Forest&quot;,
+        ///  &quot;Supertypes&quot;:[  
+        ///	 &quot;Basic&quot;
+        ///  ],
+        ///  &quot;Types&quot;:[  
+        ///	 &quot;Land&quot;
+        ///  ],
+        ///  &quot;Subtypes&quot;:[  
+        ///	 &quot;Forest&quot;
+        ///  ],
+        ///  &quot;Rarity&quot;:&quot;Basic Land&quot;,
+        ///  &quot;Text&quot;:null,
+        ///  &quot;Flavor&quot;:null,
+        ///  &quot;Artist&quot;:&quot;John Avon&quot;,
+        ///  &quot;Number&quot;:&quot;246&quot;,
+        ///  &quot;Power&quot;:null,
+        ///  &quot;Toughness&quot;:null,
+        ///  &quot;Loyalty&quot;:null,
+        ///  &quot;Layout&quot;:&quot;normal&quot;,
+        ///  &quot;Multiverseid&quot;:195158,
+        ///  &quot;Variations&quot;:[  
+        ///	 &quot;201962&quot;,
+        ///	 &quot; [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string Forest {
+            get {
+                return ResourceManager.GetString("Forest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {  
+        ///  &quot;Name&quot;:&quot;Ghost Quarter&quot;,
+        ///  &quot;Names&quot;:null,
+        ///  &quot;ManaCost&quot;:null,
+        ///  &quot;Cmc&quot;:0.0,
+        ///  &quot;Colors&quot;:null,
+        ///  &quot;ColorIdentity&quot;:null,
+        ///  &quot;Type&quot;:&quot;Land&quot;,
+        ///  &quot;Supertypes&quot;:null,
+        ///  &quot;Types&quot;:[  
+        ///	 &quot;Land&quot;
+        ///  ],
+        ///  &quot;Subtypes&quot;:null,
+        ///  &quot;Rarity&quot;:&quot;Uncommon&quot;,
+        ///  &quot;Text&quot;:&quot;{T}: Add {C} to your mana pool.\n{T}, Sacrifice Ghost Quarter: Destroy target land. Its controller may search his or her library for a basic land card, put it onto the battlefield, then shuffle his or her library.&quot;,
+        ///  &quot;Flavor&quot;:&quot;Deserted, but not uninhabited.&quot;, [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string GhostQuarter {
+            get {
+                return ResourceManager.GetString("GhostQuarter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à {
         ///	&quot;artist&quot;: &quot;Slawomir Maniak&quot;,
         ///	&quot;cmc&quot;: 0,
@@ -295,6 +417,86 @@ namespace mtgtools.Tests {
         internal static string JsonSorcery {
             get {
                 return ResourceManager.GetString("JsonSorcery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {  
+        ///  &quot;Name&quot;:&quot;Magus of the Library&quot;,
+        ///  &quot;Names&quot;:null,
+        ///  &quot;ManaCost&quot;:&quot;{G}{G}&quot;,
+        ///  &quot;Cmc&quot;:2.0,
+        ///  &quot;Colors&quot;:[  
+        ///	 &quot;Green&quot;
+        ///  ],
+        ///  &quot;ColorIdentity&quot;:[  
+        ///	 &quot;G&quot;
+        ///  ],
+        ///  &quot;Type&quot;:&quot;Creature — Human Wizard&quot;,
+        ///  &quot;Supertypes&quot;:null,
+        ///  &quot;Types&quot;:[  
+        ///	 &quot;Creature&quot;
+        ///  ],
+        ///  &quot;Subtypes&quot;:[  
+        ///	 &quot;Human&quot;,
+        ///	 &quot;Wizard&quot;
+        ///  ],
+        ///  &quot;Rarity&quot;:&quot;Rare&quot;,
+        ///  &quot;Text&quot;:&quot;{T}: Add {C} to your mana pool.\n{T}: Draw a card. Activate this ability only if you have exactly seven cards in hand.&quot;,
+        ///  &quot;Flavor&quot;:&quot;The ancient books slowly crumbled, their se [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string MagusOfTheLibrary {
+            get {
+                return ResourceManager.GetString("MagusOfTheLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {  
+        ///  &quot;Name&quot;:&quot;Spawning Bed&quot;,
+        ///  &quot;Names&quot;:null,
+        ///  &quot;ManaCost&quot;:null,
+        ///  &quot;Cmc&quot;:0.0,
+        ///  &quot;Colors&quot;:null,
+        ///  &quot;ColorIdentity&quot;:null,
+        ///  &quot;Type&quot;:&quot;Land&quot;,
+        ///  &quot;Supertypes&quot;:null,
+        ///  &quot;Types&quot;:[  
+        ///	 &quot;Land&quot;
+        ///  ],
+        ///  &quot;Subtypes&quot;:null,
+        ///  &quot;Rarity&quot;:&quot;Uncommon&quot;,
+        ///  &quot;Text&quot;:&quot;{T}: Add {C} to your mana pool.\n{6}, {T}, Sacrifice Spawning Bed: Create three 1/1 colorless Eldrazi Scion creature tokens. They have \&quot;Sacrifice this creature: Add {C} to your mana pool.\&quot;&quot;,
+        ///  &quot;Flavor&quot;:&quot;Young Eldrazi crawl forth from the dust, compelled by a  [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string SpawningBed {
+            get {
+                return ResourceManager.GetString("SpawningBed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à {  
+        ///  &quot;Name&quot;:&quot;Thought-Knot Seer&quot;,
+        ///  &quot;Names&quot;:null,
+        ///  &quot;ManaCost&quot;:&quot;{3}{C}&quot;,
+        ///  &quot;Cmc&quot;:4.0,
+        ///  &quot;Colors&quot;:null,
+        ///  &quot;ColorIdentity&quot;:null,
+        ///  &quot;Type&quot;:&quot;Creature — Eldrazi&quot;,
+        ///  &quot;Supertypes&quot;:null,
+        ///  &quot;Types&quot;:[  
+        ///	 &quot;Creature&quot;
+        ///  ],
+        ///  &quot;Subtypes&quot;:[  
+        ///	 &quot;Eldrazi&quot;
+        ///  ],
+        ///  &quot;Rarity&quot;:&quot;Rare&quot;,
+        ///  &quot;Text&quot;:&quot;({C} represents colorless mana.)\nWhen Thought-Knot Seer enters the battlefield, target opponent reveals his or her hand. You choose a nonland card from it and exile that card.\nWhen Thought-Knot Seer leaves the battlefiel [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string ThoughtKnotSeer {
+            get {
+                return ResourceManager.GetString("ThoughtKnotSeer", resourceCulture);
             }
         }
     }

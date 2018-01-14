@@ -1,5 +1,5 @@
 ﻿using mtgtools.Models.Abilities;
-using mtgtools.Models.Zones;
+using mtgtools.Models.Costs;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,6 +16,16 @@ namespace mtgtools.Models
     /// </remarks>
     public class Card
     {
+        private static Card _Fake;
+        public static Card Fake
+        {
+            get
+            {
+                if (_Fake == null) { _Fake = new Card(); }
+                return _Fake;
+            }
+        }
+
         #region Data
 
         /// <summary>
@@ -264,7 +274,7 @@ namespace mtgtools.Models
         #endregion
 
         #region In Game
-
+        
         /// <summary>
         /// Gets or sets a <see cref="Guid"/> to uniquely identify a card in a game.
         /// </summary>
@@ -294,12 +304,28 @@ namespace mtgtools.Models
             return Abilities.FirstOrDefault(a => a.GetType() == typeof(T)) as T;
         }
 
+        /// <summary>
+        /// Gets the <typeparamref name="T"/> ability that is available (<see cref="IAbility.Condition"/> is true
+        /// and <see cref="ICost.CanPay()"/> in case of <see cref="IActivatedAbility"/>).
+        /// </summary>
+        /// <typeparam name="T"><see cref="IAbility"/> type.</typeparam>
+        /// <returns>The <typeparamref name="T"/> ability that is available.</returns>
+        public T GetAvailableAbility<T>() where T : class, IAbility
+        {
+            return Abilities.FirstOrDefault(a => a.IsAvailable && a.GetType() == typeof(T)) as T;
+        }
+
         [JsonIgnore]
         public bool IsTapped { get; private set; }
 
         public bool CanTap()
         {
-            return !IsTapped && HasAbility<SummoningSicknessStaticAbility>();
+            return !IsTapped && !HasAbility<SummoningSicknessStaticAbility>();
+        }
+
+        public bool CanUntap()
+        {
+            return IsTapped && !HasAbility<SummoningSicknessStaticAbility>();
         }
 
         public void Tap()

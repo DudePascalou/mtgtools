@@ -117,6 +117,294 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CanGetAvailableMana" xml:space="preserve">
+    <value>[  
+   {  
+      "Name":"Bane of Bala Ged",
+      "Names":null,
+      "ManaCost":"{7}",
+      "Cmc":7.0,
+      "Colors":null,
+      "ColorIdentity":null,
+      "Type":"Creature — Eldrazi",
+      "Supertypes":null,
+      "Types":[  
+         "Creature"
+      ],
+      "Subtypes":[  
+         "Eldrazi"
+      ],
+      "Rarity":"Uncommon",
+      "Text":"Whenever Bane of Bala Ged attacks, defending player exiles two permanents he or she controls.",
+      "Flavor":"The continent of Bala Ged was ravaged by massive Eldrazi of Ulamog's lineage, its lush jungles and cascading rivers reduced to dust.",
+      "Artist":"Chase Stone",
+      "Number":"1",
+      "Power":"7",
+      "Toughness":"5",
+      "Loyalty":null,
+      "Layout":"normal",
+      "Multiverseid":401814,
+      "Variations":null,
+      "ImageName":"bane of bala ged",
+      "Id":"b2baccd791f5ada8bbd505f11bf81e70c8ea27ab",
+      "Watermark":null,
+      "Border":null,
+      "Timeshifted":false,
+      "Hand":0,
+      "Life":0,
+      "Reserved":false,
+      "ReleaseDate":null,
+      "Starter":false,
+      "MciNumber":"1"
+   },
+   {  
+      "Name":"Thought-Knot Seer",
+      "Names":null,
+      "ManaCost":"{3}{C}",
+      "Cmc":4.0,
+      "Colors":null,
+      "ColorIdentity":null,
+      "Type":"Creature — Eldrazi",
+      "Supertypes":null,
+      "Types":[  
+         "Creature"
+      ],
+      "Subtypes":[  
+         "Eldrazi"
+      ],
+      "Rarity":"Rare",
+      "Text":"({C} represents colorless mana.)\nWhen Thought-Knot Seer enters the battlefield, target opponent reveals his or her hand. You choose a nonland card from it and exile that card.\nWhen Thought-Knot Seer leaves the battlefield, target opponent draws a card.",
+      "Flavor":null,
+      "Artist":"Svetlin Velinov",
+      "Number":"9",
+      "Power":"4",
+      "Toughness":"4",
+      "Loyalty":null,
+      "Layout":"normal",
+      "Multiverseid":407519,
+      "Variations":null,
+      "ImageName":"thought-knot seer",
+      "Id":"43cfeb9d9fbd9235787eb21d7ff7e4c4613d037f",
+      "Watermark":null,
+      "Border":null,
+      "Timeshifted":false,
+      "Hand":0,
+      "Life":0,
+      "Reserved":false,
+      "ReleaseDate":null,
+      "Starter":false,
+      "MciNumber":"9"
+   },
+   {  
+      "Name":"Elvish Spirit Guide",
+      "Names":null,
+      "ManaCost":"{2}{G}",
+      "Cmc":3.0,
+      "Colors":[  
+         "Green"
+      ],
+      "ColorIdentity":[  
+         "G"
+      ],
+      "Type":"Creature — Elf Spirit",
+      "Supertypes":null,
+      "Types":[  
+         "Creature"
+      ],
+      "Subtypes":[  
+         "Elf",
+         "Spirit"
+      ],
+      "Rarity":"Uncommon",
+      "Text":"Exile Elvish Spirit Guide from your hand: Add {G} to your mana pool.",
+      "Flavor":"\"We are never without guidance, if we but seek it.\"\n—Taaveti of Kelsinko, Elvish Hunter",
+      "Artist":"Julie Baroh",
+      "Number":null,
+      "Power":"2",
+      "Toughness":"2",
+      "Loyalty":null,
+      "Layout":"normal",
+      "Multiverseid":3134,
+      "Variations":null,
+      "ImageName":"elvish spirit guide",
+      "Id":"f6f2ce78ff61260f319050a2c5b6b86323fff6d5",
+      "Watermark":null,
+      "Border":null,
+      "Timeshifted":false,
+      "Hand":0,
+      "Life":0,
+      "Reserved":false,
+      "ReleaseDate":null,
+      "Starter":false,
+      "MciNumber":"69"
+   },
+   {  
+      "Name":"Magus of the Library",
+      "Names":null,
+      "ManaCost":"{G}{G}",
+      "Cmc":2.0,
+      "Colors":[  
+         "Green"
+      ],
+      "ColorIdentity":[  
+         "G"
+      ],
+      "Type":"Creature — Human Wizard",
+      "Supertypes":null,
+      "Types":[  
+         "Creature"
+      ],
+      "Subtypes":[  
+         "Human",
+         "Wizard"
+      ],
+      "Rarity":"Rare",
+      "Text":"{T}: Add {C} to your mana pool.\n{T}: Draw a card. Activate this ability only if you have exactly seven cards in hand.",
+      "Flavor":"The ancient books slowly crumbled, their secrets turning to dust. But their every word sings within the magus's head.",
+      "Artist":"Wayne Reynolds",
+      "Number":"134",
+      "Power":"1",
+      "Toughness":"1",
+      "Loyalty":null,
+      "Layout":"normal",
+      "Multiverseid":134741,
+      "Variations":null,
+      "ImageName":"magus of the library",
+      "Id":"2f42cb77826b88a5c239232850f202c9756bdc0c",
+      "Watermark":null,
+      "Border":null,
+      "Timeshifted":false,
+      "Hand":0,
+      "Life":0,
+      "Reserved":false,
+      "ReleaseDate":null,
+      "Starter":false,
+      "MciNumber":"134"
+   },
+   {  
+      "Name":"Forest",
+      "Names":null,
+      "ManaCost":null,
+      "Cmc":0.0,
+      "Colors":null,
+      "ColorIdentity":[  
+         "G"
+      ],
+      "Type":"Basic Land — Forest",
+      "Supertypes":[  
+         "Basic"
+      ],
+      "Types":[  
+         "Land"
+      ],
+      "Subtypes":[  
+         "Forest"
+      ],
+      "Rarity":"Basic Land",
+      "Text":null,
+      "Flavor":null,
+      "Artist":"John Avon",
+      "Number":"246",
+      "Power":null,
+      "Toughness":null,
+      "Loyalty":null,
+      "Layout":"normal",
+      "Multiverseid":195158,
+      "Variations":[  
+         "201962",
+         "201960",
+         "195183",
+         "201961",
+         "195177",
+         "201959",
+         "195192"
+      ],
+      "ImageName":"forest1",
+      "Id":"cdc297573736c8a7e975830eb7c1b4029f0da3a6",
+      "Watermark":"Green",
+      "Border":null,
+      "Timeshifted":false,
+      "Hand":0,
+      "Life":0,
+      "Reserved":false,
+      "ReleaseDate":null,
+      "Starter":false,
+      "MciNumber":null
+   },
+   {  
+      "Name":"Ghost Quarter",
+      "Names":null,
+      "ManaCost":null,
+      "Cmc":0.0,
+      "Colors":null,
+      "ColorIdentity":null,
+      "Type":"Land",
+      "Supertypes":null,
+      "Types":[  
+         "Land"
+      ],
+      "Subtypes":null,
+      "Rarity":"Uncommon",
+      "Text":"{T}: Add {C} to your mana pool.\n{T}, Sacrifice Ghost Quarter: Destroy target land. Its controller may search his or her library for a basic land card, put it onto the battlefield, then shuffle his or her library.",
+      "Flavor":"Deserted, but not uninhabited.",
+      "Artist":"Peter Mohrbacher",
+      "Number":"240",
+      "Power":null,
+      "Toughness":null,
+      "Loyalty":null,
+      "Layout":"normal",
+      "Multiverseid":220371,
+      "Variations":null,
+      "ImageName":"ghost quarter",
+      "Id":"4ade34a627608cd69a9e51da96fe001a1e364192",
+      "Watermark":null,
+      "Border":null,
+      "Timeshifted":false,
+      "Hand":0,
+      "Life":0,
+      "Reserved":false,
+      "ReleaseDate":null,
+      "Starter":false,
+      "MciNumber":"240"
+   },
+   {  
+      "Name":"Spawning Bed",
+      "Names":null,
+      "ManaCost":null,
+      "Cmc":0.0,
+      "Colors":null,
+      "ColorIdentity":null,
+      "Type":"Land",
+      "Supertypes":null,
+      "Types":[  
+         "Land"
+      ],
+      "Subtypes":null,
+      "Rarity":"Uncommon",
+      "Text":"{T}: Add {C} to your mana pool.\n{6}, {T}, Sacrifice Spawning Bed: Create three 1/1 colorless Eldrazi Scion creature tokens. They have \"Sacrifice this creature: Add {C} to your mana pool.\"",
+      "Flavor":"Young Eldrazi crawl forth from the dust, compelled by a greater will.",
+      "Artist":"Jason Felix",
+      "Number":"248",
+      "Power":null,
+      "Toughness":null,
+      "Loyalty":null,
+      "Layout":"normal",
+      "Multiverseid":402046,
+      "Variations":null,
+      "ImageName":"spawning bed",
+      "Id":"26ed21c9d5a751d223f413d9fc924c3802c0352d",
+      "Watermark":null,
+      "Border":null,
+      "Timeshifted":false,
+      "Hand":0,
+      "Life":0,
+      "Reserved":false,
+      "ReleaseDate":null,
+      "Starter":false,
+      "MciNumber":"248"
+   }
+]</value>
+  </data>
   <data name="Desolation" xml:space="preserve">
     <value>[  
    {  

@@ -13,6 +13,11 @@ namespace mtgtools.Models.Costs
             return Ability.Owner.OutOfTheGame.Cards.All(c => !c.Equals(Ability.Card));
         }
 
+        public override ICost Clone()
+        {
+            return new RemoveFromTheGameCost();
+        }
+
         public override void Pay()
         {
             if (CanPay())

@@ -13,6 +13,11 @@ namespace mtgtools.Models.Costs
             return Ability.Card.CanTap();
         }
 
+        public override ICost Clone()
+        {
+            return new TapCost();
+        }
+
         public override void Pay()
         {
             if (CanPay())
